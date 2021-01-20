@@ -2,7 +2,9 @@
 <head>
   <title>Dashboard</title>
   {{>links}}
+
   <link rel="stylesheet" href="/css/dashboard.css">
+  {{>adminheader}}
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
 
@@ -58,7 +60,7 @@
 <body>
   <section style="width: 100%; height: 100%;">
 
-    {{>adminheader}}
+
 
     <h1>Welcome {{user.username}},</h1>
     <p>
@@ -137,8 +139,10 @@
 
 
 
-      {{>scripts}}
+
       {{>footer}}
+      {{>scripts}}
     </section>
   </body>
+
 </html>

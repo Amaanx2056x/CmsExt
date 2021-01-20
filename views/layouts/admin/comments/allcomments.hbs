@@ -1,55 +1,59 @@
+<html>
 {{>links}}
 <link rel="stylesheet" href="/css/comment.css">
-<section style="width: 100%; height: 100%;">
-  {{>adminheader}}
-  {{>msgs}}
-  <div class="container-fluid">
-    <center>
-      <div class="row">
-        <div class="col-md-12">
-          <h1>Comments</h1>
-          <div style="overflow-x: auto;">
+{{>adminheader}}
+<h1 align="center">Comments</h1>
+<body>
+  <section style="width: 100%; height: 100%;">
 
-            {{#if comments}}
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">OWNER</th>
-                  <th scope="col">COMMENT</th>
-                  <th scope="col">DATE</th>
-                  <th scope="col">DELETE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each comments}}
-                <tr>
-                  <td>{{counter @index}}</td>
-                  <td>{{user.username}}</td>
-                  <td>
-                    <div id="commentBody">
-                      {{body}}
-                    </div>
-                  </td>
-                  <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
-                  <td> <form action='/admin/comments/{{id}}?_method=DELETE' method='post'>
-                    <button type='submit' class='btn btn-danger'>DELETE</button>
-                  </form>
-                  </td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </center>
-  </div>
-  {{else}}
-  <div>
-    <h5>{{message}}</h5>
-  </div>
-  {{/if}}
-  {{>scripts}}
-  {{>footer}}
-</section>
+    {{>msgs}}
+    {{#if comments}}
+
+
+    <div style="overflow-x: auto;">
+
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">OWNER</th>
+            <th scope="col">COMMENT</th>
+            <th scope="col">DATE</th>
+            <th scope="col">DELETE</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each comments}}
+          <tr>
+            <td>{{counter @index}}</td>
+            <td>{{user.username}}</td>
+            <td>
+              <div id="commentBody">
+                {{body}}
+              </div>
+            </td>
+            <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
+            <td> <form action='/admin/comments/{{id}}?_method=DELETE' method='post'>
+              <button type='submit' class='btn btn-danger'>DELETE</button>
+            </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+    {{else}}
+    <div>
+      <h5 align="center">{{message}}</h5>
+    </div>
+    {{/if}}
+    {{>footer}}
+    {{>scripts}}
+  </section>
+</body>
+</html>

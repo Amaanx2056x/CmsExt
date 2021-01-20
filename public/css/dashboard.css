@@ -1,3 +1,9 @@
 a:active,a {
   color: white;
 }
+body {
+  background: cyan;
+}
+section {
+  background: purple;
+}

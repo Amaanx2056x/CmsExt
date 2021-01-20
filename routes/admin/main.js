@@ -1,5 +1,7 @@
 const express = require('express')
-const nodemailer = require('nodemailer')
+const {
+  deleteMail
+} = require("../../helpers/mail")
 const bcrypt = require('bcryptjs')
 const {
   isEmpty,
@@ -61,28 +63,7 @@ router.delete('/profile/:id', (req, res)=> {
     }).exec()
   ]
   Promise.all(toRemove).then(([user, posts])=> {
-    var mail = `<center><h1>Account Deleted</h1><p>Hi ${user.username}, we're sorry to see you go. This mail is sent to you to inform you that your account has been deleted.</p></center><p align="right">Regards,<br>TeamCMS</p>`
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'teamcms01r@gmail.com',
-        pass: 'TeamCMS01r'
-      }
-    });
 
-    var mailOptions = {
-
-      from: 'teamcms01r@gmail.com',
-      to: user.email.toString(),
-      subject: 'ACCOUNT DELETED',
-      html: mail
-    }
-    transporter.sendMail(mailOptions, function(error, info) {
-      if (error) {
-        req.flash('error_msg', 'UNABLE TO SEND REQUEST DUE TO SOME UNKNOWN ERROR, PLEASE TRY AGAIN LATER.')
-        res.redirect('/')
-      }
-    });
     user.deleteOne()
     posts.forEach((post)=> {
       if (post.file) {
@@ -90,11 +71,13 @@ router.delete('/profile/:id', (req, res)=> {
       }
       post.deleteOne()
     })
-
-    //Post.deleteMany({user: req.user})
+    deleteMail(
+      user.username,
+      user.email)
     req.flash('success_msg',
       `Account was deleted successfully!`)
     res.redirect('/login')
+
   })
 })
 
@@ -140,6 +123,9 @@ router.put('/profile/editProfile/:id', (req, res)=> {
               user.save().then((saved)=> {
                 req.flash('success_msg', 'Profile is modified, Please log in to continue')
                 res.redirect('/login')
+              }).catch((error)=> {
+                req.flash('error_msg', 'User with that name already exists.')
+                res.redirect('/admin/profile')
               })
             })
           })
