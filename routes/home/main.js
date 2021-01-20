@@ -23,7 +23,7 @@ router.get('/', (req, res)=> {
   .populate('user').then((post)=> {
     if (post.length == 0) {
       res.render('layouts/home', {
-        message: "No Post have been made yet."
+        message: "No Post have been made yet.", pageTitle: "HOME"
       })
     } else {
       Post.countDocuments().then((count)=> {
@@ -85,7 +85,7 @@ passport.deserializeUser((id, done)=> {
 })
 router.post('/login', (req, res, next)=> {
   passport.authenticate('local', {
-    successRedirect: '/admin/',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
   })(req, res, next);
@@ -280,6 +280,7 @@ router.post('/search', (req, res)=> {
     if (post.length == 0) {
       res.render('layouts/home', {
         message: "No Posts found.",
+        pageTitle: "SEARCH RESULTS:",
         current: parseInt(page),
         pages: Math.ceil(count/perPage)
       })

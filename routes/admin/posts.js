@@ -1,7 +1,8 @@
 const express = require('express')
 const Post = require('../../models/Post')
 const {
-  userAuth
+  userAuth,
+  adminAuth
 } = require('../../helpers/auth')
 const Category = require('../../models/Category')
 const {
@@ -14,7 +15,8 @@ const router = express.Router()
 router.all('/*', userAuth, (req, res, next)=> {
   next()
 })
-router.get('/', (req, res)=> {
+router.get('/', adminAuth, (req, res, next)=> {
+
   Post.find({})
   .populate('category')
   .then((posts)=> {

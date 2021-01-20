@@ -1,10 +1,16 @@
-module.exports={
-  userAuth: function (req, res, next){
-    if(req.isAuthenticated()){
+module.exports = {
+  userAuth: function (req, res, next) {
+    if (req.isAuthenticated()) {
       next();
-    }
-    else{
+    } else {
       res.redirect('/login')
+    }
+  },
+  adminAuth: function (req, res, next) {
+    if (req.user.isAdmin) {
+      next();
+    } else {
+      res.redirect('/')
     }
   }
 }

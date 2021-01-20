@@ -13,7 +13,8 @@ const Category = require('../../models/Category')
 const Comment = require('../../models/Comment')
 const User = require('../../models/User')
 const {
-  userAuth
+  userAuth,
+  adminAuth
 } = require('../../helpers/auth')
 const router = express.Router()
 
@@ -21,7 +22,7 @@ const router = express.Router()
 router.all('/*', userAuth, (req, res, next)=> {
   next()
 })
-router.get('/', (req, res)=> {
+router.get('/', adminAuth, (req, res, next)=> {
   const counts = [
     Post.countDocuments({}).exec(),
     Post.countDocuments({

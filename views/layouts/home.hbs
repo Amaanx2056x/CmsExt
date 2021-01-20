@@ -22,15 +22,15 @@
         </form>
       </div>
 
+      {{>categories}}
+      <h1 class="m-3" align="center">{{pageTitle}}</h1>
       {{#if message}}
       <h3 class="m-3">{{message}}</h3><br>
-      <p>
-        <a href="/">BACK TO HOME</a>
-      </p>
-      {{else}}
-      {{>categories}}
 
-      <center><h1 class="m-3">{{pageTitle}}</h1></center>
+      {{else}}
+
+
+
       <div class="row">
         {{#each post}}
         <div class="col-md-6">
