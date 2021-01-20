@@ -1,0 +1,9 @@
+.rounded {
+  width: 95%;
+  height: 600px;
+}
+@media only screen and (max-width: 480px) {
+  .rounded {
+    height: 300px;
+  }
+}

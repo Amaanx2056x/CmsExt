@@ -1,0 +1,30 @@
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+      
+      <a class="nav-link" href="/admin"><i class="fa fa-area-chart" aria-hidden="true"></i> Admin</a>
+             {{#if user}}
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+       
+          <a class="dropdown-item" href="/logout"><i class="fa fa-user"></i> 
+          {{user.username}}
+          </a>
+        </div>
+      </li>
+      {{else}}
+        <a class="nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> login</a>
+       {{/if}}
+    </div>
+  </div>
+</nav>
+</header>

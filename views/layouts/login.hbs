@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+{{>links}}
+<link rel="stylesheet" href="/css/inputStyle.css">
+<body>
+  <section style="width: 100%; height: 100%;">
+    {{>header}}
+    {{>msgs}}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center">Sign In</h5>
+              <form class="form-signin" action='/login' method='post'>
+                <div class="form-label-group">
+                  <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+                  <label for="inputEmail">Username</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" name="password" toshow='on' class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+
+                <div class="custom-control custom-switch mb-3">
+                  <input type="checkbox" class="custom-control-input" picker="trigger" id="customSwitch1">
+                  <label class="custom-control-label" for="customSwitch1">Show Password</label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                <a class="d-block text-center mt-2 small" href="/forgot">Forgot Password?</a>
+
+
+                <a class="d-block text-center mt-2 small" href="./register">Sign Up</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{>footer}}
+    {{>scripts}}
+  </section>
+
+</body>
+</html>

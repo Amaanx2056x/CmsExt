@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+{{>links}}
+<link rel="stylesheet" href='/css/home.css'>
+{{>header}}
+{{>msgs}}
+<body>
+  <section style="width: 100%; height: 100%;">
+    <div class="container-fluid">
+
+      <div class="card m-3">
+        <form action="/search" method="post">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" name="searchText" required autocomplete="off" class="form-control" placeholder="Search Posts...">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {{#if message}}
+      <h3 class="m-3">{{message}}</h3><br>
+      <p>
+        <a href="/">BACK TO HOME</a>
+      </p>
+      {{else}}
+      {{>categories}}
+
+      <center><h1 class="m-3">{{pageTitle}}</h1></center>
+      <div class="row">
+        {{#each post}}
+        <div class="col-md-6">
+          <div class="card border-dark m-2">
+            <div class="card-body">
+              <div class="card-title ml-4" id="cardTitle">
+                {{title}}
+              </div>
+              <center>
+                {{#if file}}
+                <img src="/uploads/{{file}}" id="postImage" class="rounded" alt="Image Unavailable">
+                {{else}}
+                <img src="/uploads/noImage.png" id="postImage" class="rounded" alt="Image Unavailable">
+                {{/if}}
+              </center>
+              <p class="card-text">
+                {{{readmore body}}}...
+              </p>
+              <a href="/post/{{id}}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Posted on {{dateFormat date 'MMMM Do YYYY'}} by
+                {{user.username}}</small>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{#if (StrEqual pageTitle "SEARCH RESULTS:")}}
+      <p>
+        <a href="/">BACK TO HOME</a>
+      </p>
+      {{/if}}
+      <ul class="pagination justify-content-center m-3">
+        {{#paginate current=current pages=pages}}{{/paginate}}
+      </ul>
+
+      {{/if}}
+
+    </div>
+
+
+
+    {{>footer}}
+    {{>scripts}}
+  </section>
+</body>
+</html>

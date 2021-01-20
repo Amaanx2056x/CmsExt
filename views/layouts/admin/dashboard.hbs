@@ -1,0 +1,144 @@
+<html>
+<head>
+  <title>Dashboard</title>
+  {{>links}}
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {
+      'packages': ['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+
+      // Create the data table.
+      var data = google.visualization.arrayToDataTable([
+        ["Statistics", "Count", {
+          role: "style"
+        }],
+        ["Posts", {{postCount}}, "color: purple"],
+        ["Comments", {{commentCount}}, "color: green"],
+        ["Categories", {{categoryCount}}, "color: cyan"]
+
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+        {
+          calc: "stringify",
+          sourceColumn: 1,
+          type: "string",
+          role: "annotation"
+        },
+        2]);
+
+      var options = {
+        title: "Here is the Overall Count Statistics:",
+        //width: 800,
+        height: 400,
+        bar: {
+          groupWidth: "70%"
+        },
+        legend: {
+          position: "none"
+        },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+    }
+  </script>
+</head>
+<body>
+  <section style="width: 100%; height: 100%;">
+
+    {{>adminheader}}
+
+    <h1>Welcome {{user.username}},</h1>
+    <p>
+      This is the control side for your profile.
+      Here you can control and modify your account, see stats and manage your content including posts you created, categories or comments you made on posts.<br>
+      <div class="row">
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-success text-white mb-4">
+            <div class="card-body">
+              YOUR POSTS
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <span class="big text-white">{{mypost}}</span>
+              <div class="small text-white">
+                <a href='/admin/posts/myposts'>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body">
+              TOTAL POSTS
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <span class="big text-white">{{postCount}}</span>
+              <div class="small text-white">
+                <a href='/admin/posts/'>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-danger text-white mb-4">
+            <div class="card-body">
+              TOTAL COMMENTS
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <span class="big text-white">{{commentCount}}</span>
+              <div class="small text-white">
+                <a href='/admin/comments/'>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-info text-white mb-4">
+            <div class="card-body">
+              TOTAL CATEGORIES
+            </div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+              <span class="big text-white">{{categoryCount}}</span>
+              <div class="small text-white">
+                <a href='/admin/categories/'>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <center><div id="columnchart_values"></div>
+      </center>
+
+
+
+
+      {{>scripts}}
+      {{>footer}}
+    </section>
+  </body>
+</html>

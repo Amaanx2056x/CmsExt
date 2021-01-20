@@ -1,0 +1,14 @@
+#postImage {
+  width: 90%;
+  height: 450px;
+  padding: 5px;
+}
+@media only screen and (max-width: 480px) {
+  #postImage {
+    height: 300px;
+  }
+}
+#cardTitle {
+  font-size: 20px;
+  font-weight: bold;
+}

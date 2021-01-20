@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {{>links}}
+  <link rel="stylesheet" href="/css/inputStyle.css">
+</head>
+<body>
+  <section style="width: 100%; height: 100%;">
+    {{>adminheader}}
+    {{#each errors}}
+    <div class="alert alert-danger">
+      {{message}}<button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {{/each}}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center">Update Post</h5>
+
+              <form class="form-signin" action="/admin/posts/update/{{post.id}}?_method=PUT" method="post" enctype="multipart/form-data">
+
+                <div class="form-label-group">
+                  <input required name="title" autocomplete="off" type="text" class="form-control" id="title" value="{{post.title}}" placeholder="Enter title">
+                  <label for="title">Title</label>
+                </div>
+
+                <input type="file" id="actual-btn" name="file" accept="image/*" hidden />
+                <label class="btn btn-info btn-sm" for="actual-btn">Choose Image <i class="fa fa-upload" aria-hidden="true"></i></label>
+                <span id="file-chosen">No file chosen</span>
+
+                <div class="form-new">
+                  <label for="category">Category</label>
+                  <select name="category" id="category" class="form-control">
+                    {{#select post.category}}
+
+                    {{#each categories}}
+
+                    <option value="{{id}}">{{name}}</option>
+
+                    {{/each}}
+
+                    {{/select}}
+                  </select>
+                </div>
+
+
+                <div class="form-new">
+                  <label for="status">Status</label>
+                  <select name="status" id="status" class="form-control">
+                    {{#select post.status}}
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                    {{/select}}
+                  </select>
+                </div>
+
+                <div class="custom-control custom-switch mb-3">
+                  <input type="checkbox" name="allowComments" id="allowComments" {{#if post.allowComments}} checked="checked"{{/if}} class="custom-control-input">
+                  <label class="custom-control-label" for="allowComments">Allow Comments</label>
+                </div>
+
+                <div class="form-group">
+                  <input id="body" type="hidden" value="{{post.body}}" name="body">
+                  <trix-editor input="body"></trix-editor>
+                </div>
+
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update</button>
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="/js/file.js"></script>
+  {{>footer}}
+  {{>scripts}}
+</body>
+</html>

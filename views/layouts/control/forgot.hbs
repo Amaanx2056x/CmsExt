@@ -1,0 +1,27 @@
+{{>links}}
+<link rel="stylesheet" href="/css/inputStyle.css">
+{{>header}}
+{{>msgs}}
+<section style="width: 100%; height: 100%;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">FORGOT PASSWORD</h5>
+            <form class="form-signin" action="/forgot" method='post'>
+              <div class="form-label-group">
+                <input type="email" autocomplete="off" name="email" id="mail" class="form-control" placeholder="Registered Email" required>
+                <label for="mail">Registered Email</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">SEND MAIL</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{>scripts}}
+  {{>footer}}
+</section>

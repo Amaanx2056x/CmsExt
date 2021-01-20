@@ -1,0 +1,62 @@
+<html>
+{{>links}}
+{{>adminheader}}
+<h1 align="center">MY POSTS</h1>
+<body>
+  <section style="width: 100%; height: 100%;">
+    {{>msgs}}
+    {{#if posts}}
+    <div style="overflow-x: auto;">
+      <table class='table table-bordered'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>File</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Category</th>
+            <th>Allow Comments</th>
+            <th>Date</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each posts}}
+          <tr>
+            <td>{{counter @index}}</td>
+            <td>
+              {{#if file}}
+              <img height="50" width="60" class="img-responsive" src="/uploads/{{file}}" alt="">
+              {{else}}
+              <img height="50" width="60" class="img-responsive" src="/uploads/noImage.png" alt="No Image Available">
+              {{/if}}
+            </td>
+            <td>{{title}}</td>
+            <td>{{status}}</td>
+            <td>{{category.name}}</td>
+            <td>{{allowComments}}</td>
+            <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
+            <td><button class='btn btn-success'><a href='/post/{{id}}'>VIEW</a></button></td>
+            <td> <a href='/admin/posts/update/{{id}}' class='btn btn-info'>EDIT</a></td>
+            <td>
+              <form action='/admin/posts/{{id}}?_method=DELETE' method='post'>
+                <button type='submit' class='btn btn-danger'>DELETE</button>
+              </form>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div>
+      <h5>{{message}}</h5>
+    </div>
+    {{/if}}
+    {{>footer}}
+    {{>scripts}}
+  </section>
+</body>
+</html>
