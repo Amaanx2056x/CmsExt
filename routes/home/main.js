@@ -85,7 +85,7 @@ passport.deserializeUser((id, done)=> {
 })
 router.post('/login', (req, res, next)=> {
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/admin/posts/myposts',
     failureRedirect: '/login',
     failureFlash: true
   })(req, res, next);
@@ -173,8 +173,11 @@ router.get('/post/:id', (req, res)=> {
       models: 'users'
     }})
   .populate('user')
+  .populate('lastEdited')
   .then((post)=> {
-    Category.find({}).then((categories)=> {
+    Category.find({
+      approved: true
+    }).then((categories)=> {
       res.render('layouts/post', {
         post, categories
       })

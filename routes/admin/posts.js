@@ -134,7 +134,7 @@ router.post('/create', (req, res)=> {
       })
       newPost.save().then((saved)=> {
         req.flash('success_msg', `Post ${saved.title} was created successfully!`)
-        res.redirect('/admin/posts/')
+        res.redirect('/admin/posts/myposts')
       }).catch((err)=> {
         console.log('error', err)
       })
@@ -173,7 +173,7 @@ router.put('/update/:id', (req, res)=> {
       if (!req.body.allowComments) {
         allowComments = false
       }
-      post.user = req.user.id,
+      post.lastEdited = req.user.id,
       post.title = req.body.title,
       post.status = req.body.status,
       post.category = req.body.category,

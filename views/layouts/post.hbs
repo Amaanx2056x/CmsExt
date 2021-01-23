@@ -23,6 +23,11 @@
       <p class="text-muted m-3">
         Posted by {{post.user.username}} on {{dateFormat post.date 'MMMM Do YYYY'}}
       </p>
+      {{#if post.lastEdited}}
+      <p class="text-muted m-3">
+        Last Edited by {{post.lastEdited.username}}
+      </p>
+      {{/if}}
       <hr>
       {{#if user}}
       {{#if post.allowComments}}
