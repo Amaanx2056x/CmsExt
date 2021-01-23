@@ -51,10 +51,12 @@ router.get('/myposts', (req, res)=> {
 })
 
 router.get('/create', (req, res)=> {
-  Category.find({}).then((categories)=> {
+  Category.find({
+    approved: true
+  }).then((categories)=> {
     if (categories.length == 0) {
-      req.flash("error_msg", 'you need to create a category first.')
-      res.redirect('/admin/categories/')
+      req.flash("error_msg", 'No categories available right now, Please request Admin to create one.')
+      res.redirect('/admin/categories/reqCategory')
     } else {
       res.render('layouts/admin/posts/create', {
         categories
@@ -67,7 +69,9 @@ router.get('/update/:id', (req, res)=> {
   Post.findOne({
     _id: req.params.id
   }).then((post)=> {
-    Category.find({}).then((categories)=> {
+    Category.find({
+      approved: true
+    }).then((categories)=> {
       if (categories.length == 0) {
         req.flash("error_msg", 'you need to create a category first.')
         res.redirect('/admin/categories/')
@@ -81,7 +85,9 @@ router.get('/update/:id', (req, res)=> {
 })
 
 router.post('/create', (req, res)=> {
-  Category.find({}).then(categories=> {
+  Category.find({
+    approved: true
+  }).then(categories=> {
     let errors = []
     if (req.body.title.trim().length > 20 || req.body.title.trim().length < 4) {
       errors.push({
@@ -152,7 +158,9 @@ router.put('/update/:id', (req, res)=> {
       })
     }
     if (errors.length > 0) {
-      Category.find({}).then(categories=> {
+      Category.find({
+        approved: true
+      }).then(categories=> {
         res.render('layouts/admin/posts/update', {
           errors,
           post,

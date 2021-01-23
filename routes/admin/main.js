@@ -32,7 +32,9 @@ router.get('/', adminAuth, (req, res, next)=> {
       user: req.user.id
     }).exec(),
     Comment.countDocuments({}).exec(),
-    Category.countDocuments({}).exec(),
+    Category.countDocuments({
+      approved: true
+    }).exec(),
   ];
   Promise.all(counts).then(([postCount, mypost, mycomment, commentCount, categoryCount])=> {
     res.render('layouts/admin/dashboard', {
@@ -112,7 +114,7 @@ router.put('/profile/editProfile/:id', (req, res)=> {
           })
         }
         if (errors.length > 0) {
-          res.render('layouts/admin/profile/', {
+          res.render('layouts/admin/profile', {
             errors
           })
         } else {
