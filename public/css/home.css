@@ -13,6 +13,10 @@ body {
   color: blue;
   font-weight: bold;
 }
+#categoryBox {
+  background: white;
+  opacity: .8;
+}
 a {
   color: black;
   font-weight: bold;
@@ -23,12 +27,18 @@ a {
   height: 450px;
   padding: 5px;
 }
+#cardTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#postCard {
+  background: white;
+  opacity: .95;
+}
+
 @media only screen and (max-width: 480px) {
   #postImage {
     height: 300px;
   }
-}
-#cardTitle {
-  font-size: 20px;
-  font-weight: bold;
 }

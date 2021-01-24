@@ -31,30 +31,32 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
           <h1>Categories</h1>
           {{#if categories}}
-          <table class="table ">
-            <thead>
-              <tr>
-                <th></th>
-                <th>NAME</th>
-                <th>EDIT</th>
-                <th>DELETE</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each categories}}
-              <tr>
-                <td>{{counter @index}}</td>
-                <td>{{name}}</td>
-                <td> <a href='/admin/categories/update/{{id}}' class='btn btn-info'>EDIT</a></td>
-                <td>
-                  <form action='/admin/categories/{{id}}?_method=DELETE' method='post'>
-                    <button type='submit' class='btn btn-danger'>DELETE</button>
-                  </form>
-                </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
+          <div style="background: white; opacity: 0.95;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>NAME</th>
+                  <th>EDIT</th>
+                  <th>DELETE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each categories}}
+                <tr>
+                  <td>{{counter @index}}</td>
+                  <td>{{name}}</td>
+                  <td> <a href='/admin/categories/update/{{id}}' class='btn btn-info'>EDIT</a></td>
+                  <td>
+                    <form action='/admin/categories/{{id}}?_method=DELETE' method='post'>
+                      <button type='submit' class='btn btn-danger'>DELETE</button>
+                    </form>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
           {{else}}
           <div>
             <h5>{{message}}</h5>

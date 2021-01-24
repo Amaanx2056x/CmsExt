@@ -8,6 +8,12 @@ body {
   width: 95%;
   height: 600px;
 }
+
+#postData, .text-muted ,#commentBox {
+  background: white;
+  opacity: .95;
+}
+
 @media only screen and (max-width: 480px) {
   .rounded {
     height: 300px;

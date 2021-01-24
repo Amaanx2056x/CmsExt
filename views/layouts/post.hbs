@@ -15,22 +15,25 @@
       {{/if}}
     </center>
     <hr>
-    <p class="m-3">
-      {{{post.body}}}
-    </p>
+    <div id="postData">
+      <p class="m-3">
+        {{{post.body}}}
+      </p>
+      <hr>
+      <p class="text-muted m-3">
+        Posted by {{post.user.username}} on {{dateFormat post.date 'MMMM Do YYYY'}}
+      </p>
+      {{#if post.lastEdited}}
+      <p class="text-muted m-3">
+        Last Edited by {{post.lastEdited.username}}
+      </p>
+      {{/if}}
+    </div>
     <hr>
-    <p class="text-muted m-3">
-      Posted by {{post.user.username}} on {{dateFormat post.date 'MMMM Do YYYY'}}
-    </p>
-    {{#if post.lastEdited}}
-    <p class="text-muted m-3">
-      Last Edited by {{post.lastEdited.username}}
-    </p>
-    {{/if}}
-    <hr>
+
     {{#if user}}
     {{#if post.allowComments}}
-    <div class="card my-4">
+    <div id="commentBox" class="card my-4">
       <h5 class="card-header">Leave a Comment:</h5>
       <div class="card-body">
         <form action='/admin/comments/create' method='post'>
@@ -48,9 +51,9 @@
     {{else}} <h3>You need to <a href="/login">Log in </a>to Comment</h3><hr>
     {{/if}}
     {{#if post.comments}}
-    <div class="card" style="overflow: auto;height: 300px;">
+    <div id="commentBox" class="card mb-3" style="overflow: auto;height: 300px;">
       {{#each post.comments}}
-      <div class="media mb-4">
+      <div class="media m-3">
         <img class="d-flex mr-3 rounded-circle" src="/uploads/profile.jpg" alt="" height="40" width="40">
         <div class="media-body">
           <h5 class="mt-0">{{user.username}}</h5>

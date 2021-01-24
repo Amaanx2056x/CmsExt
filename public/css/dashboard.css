@@ -3,6 +3,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  width: 100%;
 }
 a:active,a {
   color: white;
@@ -10,5 +11,4 @@ a:active,a {
 section {
   height: 100%;
   width: 100%;
-  padding: 3px;
 }
