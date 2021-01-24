@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 //mongoose.connect('mongodb+srv://cms-admin:cms-admin@cluster0.ao5hu.mongodb.net/cms?retryWrites=true&w=majority',{useUnifiedTopology: true,useNewUrlParser: true, useFindAndModify: false, useCreateIndex:true})
-mongoose.connect('mongodb://localhost:27017/mycms01', {
+mongoose.connect('mongodb://localhost:27017/mycmd01', {
   useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true
 })
 .then((db)=> {

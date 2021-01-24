@@ -13,6 +13,22 @@ const Comment = require('../../models/Comment')
 router.all('/*', userAuth, (req, res, next)=> {
   next()
 })
+router.get('/', adminAuth, (req, res, next)=> {
+  Comment.find({})
+  .populate('user')
+  .then((comments)=> {
+    if (comments.length == 0) {
+      res.render('layouts/admin/comments/allcomments', {
+        message: 'No comments made  yet.'
+      })
+    } else {
+      res.render('layouts/admin/comments/allcomments', {
+        comments
+      })
+    }
+  })
+})
+
 router.get('/mycomments', (req, res)=> {
   Comment.find({
     user: req.user.id
@@ -67,7 +83,8 @@ router.delete('/:id', (req, res)=> {
       if (err) throw err;
       comment.deleteOne()
       req.flash('success_msg', `Comment was deleted successfully!`)
-      res.redirect('/admin/comments/')
+      var landing = (req.user.isAdmin ? '/admin/comments/': '/admin/comments/mycomments')
+      res.redirect(landing)
     })
   })
 })

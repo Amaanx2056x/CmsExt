@@ -137,5 +137,47 @@ router.put('/profile/editProfile/:id', (req, res)=> {
   })
 })
 
+router.get('/users', adminAuth, (req, res, next)=> {
+  User.find({
+    _id: {
+      $ne: req.user.id
+    }, superUser: false
+  }).then((users)=> {
+    res.render('layouts/control/users',
+      {
+        users
+      })
+  })
+})
 
+router.put('/promote/:id', adminAuth, (req, res, next)=> {
+  User.findOne({
+    _id: req.params.id
+  }).then(user=> {
+    user.isAdmin = true
+    user.save().then((saved)=> {
+      req.flash('success_msg', `${user.username} is now Admin`)
+      res.redirect('/admin/users')
+    }).catch((error)=> {
+      req.flash('error_msg', 'Cannot modify due to some error.')
+      res.redirect('/admin/users')
+    })
+  })
+})
+router.put('/demote/:id', adminAuth, (req,
+  res,
+  next)=> {
+  User.findOne({
+    _id: req.params.id
+  }).then(user=> {
+    user.isAdmin = false
+    user.save().then((saved)=> {
+      req.flash('success_msg', `${user.username} is now User`)
+      res.redirect('/admin/users')
+    }).catch((error)=> {
+      req.flash('error_msg', 'Cannot modify due to some error.')
+      res.redirect('/admin/users')
+    })
+  })
+})
 module.exports = router

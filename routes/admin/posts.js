@@ -193,10 +193,9 @@ router.put('/update/:id', (req, res)=> {
 
       post.save().then((saved)=> {
         req.flash('success_msg', `Post ${saved.title} was updated successfully!`)
-        res.redirect('/admin/posts/myposts')
+        var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
+        res.redirect(landing)
       })
-
-
     }
   })
 })
@@ -216,7 +215,8 @@ router.delete('/:id', (req, res)=> {
         }
         post.deleteOne()
         req.flash('success_msg', `Post ${post.title} was deleted successfully!`)
-        res.redirect('/admin/posts/myposts')
+        var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
+        res.redirect(landing)
       })
   })
 })

@@ -50,7 +50,7 @@
 
                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Save</button>
               </form>
-              {{#unless user.isAdmin}}
+              {{#unless user.superUser}}
               <hr><center><b>OR</b></center>
               <form class="form-signin" action='/admin/profile/{{user.id}}?_method=DELETE' method='post'>
                 <center>
