@@ -3,7 +3,11 @@
 {{>links}}
 <link rel="stylesheet" href="/css/inputStyle.css">
 
-<body>
+<body style="
+  background-image: url('../src/bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;">
   <section style="width: 100%; height: 100%;">
     {{>header}}
     {{>msgs}}
@@ -28,6 +32,7 @@
                 <div class="form-label-group">
                   <input type="text" autocomplete="off" id="inputUserame" class="form-control" placeholder="Username" value="{{username}}" name="username" required autofocus>
                   <label for="inputUserame">Username</label>
+
                 </div>
 
                 <div class="form-label-group">
@@ -36,6 +41,7 @@
                 </div>
 
                 <hr>
+
 
                 <div class="form-label-group">
                   <input type="password" id="inputPassword" class="form-control" toshow='on' placeholder="Password" name="password" required>
@@ -46,6 +52,9 @@
                   <input type="password" id="inputConfirmPassword" class="form-control" toshow='on' placeholder="Password" name="cpassword" required>
                   <label for="inputConfirmPassword">Confirm password</label>
                 </div>
+                <small id="hint" class="text-muted">
+                  Atleast 8 characters: 1 Capital , 1 small and 1 number
+                </small>
 
                 <div class="custom-control custom-switch mb-3">
                   <input type="checkbox" class="custom-control-input" picker="trigger" id="customSwitch1">

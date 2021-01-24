@@ -25,6 +25,9 @@ router.all('/*', userAuth, (req, res, next)=> {
 router.get('/', adminAuth, (req, res, next)=> {
   const counts = [
     Post.countDocuments({}).exec(),
+    User.countDocuments({
+      superAdmin: false
+    }).exec(),
     Post.countDocuments({
       user: req.user.id
     }).exec(),
@@ -36,9 +39,9 @@ router.get('/', adminAuth, (req, res, next)=> {
       approved: true
     }).exec(),
   ];
-  Promise.all(counts).then(([postCount, mypost, mycomment, commentCount, categoryCount])=> {
+  Promise.all(counts).then(([postCount, userCount, mypost, mycomment, commentCount, categoryCount])=> {
     res.render('layouts/admin/dashboard', {
-      postCount, mypost, mycomment, commentCount, categoryCount
+      postCount, userCount, mypost, mycomment, commentCount, categoryCount
     })
   })
 })
@@ -143,10 +146,17 @@ router.get('/users', adminAuth, (req, res, next)=> {
       $ne: req.user.id
     }, superUser: false
   }).then((users)=> {
-    res.render('layouts/control/users',
-      {
-        users
-      })
+    if (users.length <= 0) {
+      res.render('layouts/control/users',
+        {
+          message: 'No users found.'
+        })
+    } else {
+      res.render('layouts/control/users',
+        {
+          users
+        })
+    }
   })
 })
 

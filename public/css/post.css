@@ -1,3 +1,9 @@
+body {
+  background-image: url('../src/bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 .rounded {
   width: 95%;
   height: 600px;

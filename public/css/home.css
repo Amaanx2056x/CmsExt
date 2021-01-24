@@ -1,3 +1,23 @@
+body {
+  background-image: url('../src/bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#searchBox,#categoryBox {
+  background: transparent;
+}
+#categoryHead {
+  text-align: center;
+  font-size: 20px;
+  color: blue;
+  font-weight: bold;
+}
+a {
+  color: black;
+  font-weight: bold;
+}
+
 #postImage {
   width: 90%;
   height: 450px;

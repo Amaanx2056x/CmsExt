@@ -27,7 +27,9 @@ router.get('/', (req, res)=> {
       })
     } else {
       Post.countDocuments().then((count)=> {
-        Category.find({}).then((category)=> {
+        Category.find({
+          approved: true
+        }).then((category)=> {
           res.render('layouts/home', {
             post,
             category,
@@ -288,7 +290,9 @@ router.post('/search', (req, res)=> {
         pages: Math.ceil(count/perPage)
       })
     } else {
-      Category.find({}).then((category)=> {
+      Category.find({
+        approved: true
+      }).then((category)=> {
         res.render('layouts/home', {
           post,
           category,
@@ -321,7 +325,9 @@ router.get('/categories/:id', (req, res)=> {
 
       })
     } else {
-      Category.find({}).then((category)=> {
+      Category.find({
+        approved: true
+      }).then((category)=> {
         res.render('layouts/home', {
           post,
           category,

@@ -2,7 +2,11 @@
 {{>links}}
 {{>adminheader}}
 <h1 align="center">MY POSTS</h1>
-<body>
+<body style="
+  background-image: url('/src/bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;">
   <section style="width: 100%; height: 100%;">
     {{>msgs}}
     {{#if posts}}
@@ -52,7 +56,7 @@
     </div>
     {{else}}
     <div>
-      <h5>{{message}}</h5>
+      <h5 align="center">{{message}}</h5>
     </div>
     {{/if}}
     {{>footer}}
