@@ -6,6 +6,7 @@ body {
 }
 #searchBox,#categoryBox {
   background: transparent;
+  width: 75%;
 }
 #categoryHead {
   text-align: center;
@@ -37,6 +38,9 @@ a {
   opacity: .95;
 }
 
+#searchBox input ,#searchBox button {
+  border-radius: 10px;
+}
 @media only screen and (max-width: 480px) {
   #postImage {
     height: 300px;
