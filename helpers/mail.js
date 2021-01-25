@@ -16,7 +16,7 @@ module.exports = {
     Do Not share this email or otp with Anyone.
     </p>
     <p>
-    Click on the Link to verify your account:<br> <a style="color: cyan;" href="http://localhost:2000/verify">VERIFY MY ACCOUNT</a>
+    Click on the Link to verify your account:<br> <a style="color: cyan;" href="https://teamcms.herokuapp.com/verify">VERIFY MY ACCOUNT</a>
     </p>
     </center>
     <p align="right">
@@ -64,7 +64,7 @@ module.exports = {
     Do Not share this email or token with Anyone.
     </p>
     <p>
-    Click on the Link to reset Your Password:<br> <a style="color: cyan;" href="http://localhost:2000/reset">RESET PASSWORD</a>
+    Click on the Link to reset Your Password:<br> <a style="color: cyan;" href="https://teamcms.herokuapp.com/https://teamcms.herokuapp.com/reset">RESET PASSWORD</a>
     </p>
     </center>
     <p align="right">
