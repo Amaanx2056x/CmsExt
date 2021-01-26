@@ -26,7 +26,7 @@ router.get('/', adminAuth, (req, res, next)=> {
   const counts = [
     Post.countDocuments({}).exec(),
     User.countDocuments({
-      superAdmin: false
+      superUser: false
     }).exec(),
     Post.countDocuments({
       user: req.user.id
