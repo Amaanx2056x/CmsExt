@@ -2,7 +2,13 @@
 {{>links}}
 <link rel="stylesheet" href="/css/comment.css">
 {{>admin}}
-<h1 align="center">All Comments</h1>
+<h1 align="center">
+  {{#if pageTitle}}
+  {{pageTitle}}
+  {{else}}
+  Comments on : {{title}}
+  {{/if}}
+</h1>
 <body style="
   background-image: url('/src/bg1.jpg');
   background-repeat: no-repeat;
@@ -23,6 +29,7 @@
             <th scope="col">OWNER</th>
             <th scope="col">COMMENT</th>
             <th scope="col">DATE</th>
+
             <th scope="col">DELETE</th>
           </tr>
         </thead>
@@ -37,6 +44,7 @@
               </div>
             </td>
             <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
+
             <td> <form action='/admin/comments/{{id}}?_method=DELETE' method='post'>
               <button type='submit' class='btn btn-danger'>DELETE</button>
             </form>

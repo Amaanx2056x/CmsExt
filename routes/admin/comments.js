@@ -13,22 +13,6 @@ const Comment = require('../../models/Comment')
 router.all('/*', userAuth, (req, res, next)=> {
   next()
 })
-router.get('/', adminAuth, (req, res, next)=> {
-  Comment.find({})
-  .populate('user')
-  .then((comments)=> {
-    if (comments.length == 0) {
-      res.render('layouts/admin/comments/allcomments', {
-        message: 'No comments made  yet.'
-      })
-    } else {
-      res.render('layouts/admin/comments/allcomments', {
-        comments
-      })
-    }
-  })
-})
-
 router.get('/mycomments', (req, res)=> {
   Comment.find({
     user: req.user.id
@@ -41,7 +25,8 @@ router.get('/mycomments', (req, res)=> {
       })
     } else {
       res.render('layouts/admin/comments/mycomments', {
-        comments
+        comments,
+        pageTitle: "Comments by Me"
       })
     }
   })

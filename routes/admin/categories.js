@@ -33,7 +33,7 @@ router.get('/', adminAuth, (req, res, next)=> {
 })
 
 router.post('/create', adminAuth, (req, res, next)=> {
-  if (req.body.name.trim().length() <= 0 || req.body.name.trim.length() > 15) {
+  if (req.body.name.trim.length() <= 0 || req.body.name.trim.length() > 15) {
     req.flash('error_msg', 'Category name can be 3-15 characters!')
     res.redirect('/admin/categories/')
   } else {

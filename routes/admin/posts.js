@@ -32,6 +32,7 @@ router.get('/', adminAuth, (req, res, next)=> {
   })
 })
 
+
 router.get('/myposts', (req, res)=> {
   Post.find({
     user: req.user.id
@@ -221,4 +222,30 @@ router.delete('/:id', (req, res)=> {
   })
 })
 
+
+
+
+
+router.get('/postComment/:id', (req, res)=> {
+  Post.findOne({
+    _id: req.params.id
+  })
+  .populate({
+    path: 'comments',
+    populate: {
+      path: 'user',
+      models: 'users'
+    }})
+  .populate('user')
+  .then((post)=> {
+    var landing = (req.user.isAdmin ? 'layouts/admin/comments/allcomments': '/admin/comments/mycomments')
+    if (post.comments.length == 0) {
+      res.render(landing, {
+        message: 'No comments made  yet.'
+      })
+    } else {
+      res.render(landing, post)
+    }
+  })
+})
 module.exports = router

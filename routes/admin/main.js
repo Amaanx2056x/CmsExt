@@ -28,20 +28,13 @@ router.get('/', adminAuth, (req, res, next)=> {
     User.countDocuments({
       superUser: false
     }).exec(),
-    Post.countDocuments({
-      user: req.user.id
-    }).exec(),
-    Comment.countDocuments({
-      user: req.user.id
-    }).exec(),
-    Comment.countDocuments({}).exec(),
     Category.countDocuments({
-      approved: true
-    }).exec(),
+      approved: false
+    }).exec()
   ];
-  Promise.all(counts).then(([postCount, userCount, mypost, mycomment, commentCount, categoryCount])=> {
+  Promise.all(counts).then(([postCount, userCount, categoryCount])=> {
     res.render('layouts/admin/dashboard', {
-      postCount, userCount, mypost, mycomment, commentCount, categoryCount
+      postCount, userCount, categoryCount
     })
   })
 })

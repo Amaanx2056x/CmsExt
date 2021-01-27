@@ -21,6 +21,7 @@
             <th>Category</th>
             <th>Allow Comments</th>
             <th>Date</th>
+            <th>Comments</td>
             <th>View</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -42,6 +43,7 @@
             <td>{{category.name}}</td>
             <td>{{allowComments}}</td>
             <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
+            <td><a class="btn-btn-success" href="/admin/posts/postComment/{{id}}"><i class="fa fa-comments fa-3x"></i></a></td>
             <td><button class='btn btn-success'><a href='/post/{{id}}'>VIEW</a></button></td>
             <td> <a href='/admin/posts/update/{{id}}' class='btn btn-info'>EDIT</a></td>
             <td>

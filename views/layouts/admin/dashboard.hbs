@@ -71,35 +71,27 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <div class="card-counter primary">
-            <i class="fa fa-comments"></i>
-            <span class="count-numbers">{{commentCount}}</span>
-            <span class="count-name">Comments</span>
-          </div>
+          <a href="/admin/categories/pending">
+            <div class="card-counter primary">
+              <i class="fa fa-book"></i>
+              <span class="count-numbers">{{categoryCount}}</span>
+              <span class="count-name">Pending Categories</span>
+            </div>
+          </a>
         </div>
 
-        <div class="col-md-6">
-          <div class="card-counter danger">
-            <i class="fa fa-book"></i>
-            <span class="count-numbers">{{categoryCount}}</span>
-            <span class="count-name">Categories</span>
-          </div>
-        </div>
+
+
+
 
         <div class="col-md-6">
-          <div class="card-counter success">
-            <i class="fa fa-sticky-note"></i>
-            <span class="count-numbers">{{postCount}}</span>
-            <span class="count-name">Posts</span>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card-counter info">
-            <i class="fa fa-users"></i>
-            <span class="count-numbers">{{userCount}}</span>
-            <span class="count-name">Users</span>
-          </div>
+          <a href="/admin/users/">
+            <div class="card-counter info">
+              <i class="fa fa-users"></i>
+              <span class="count-numbers">{{userCount}}</span>
+              <span class="count-name">Users</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
