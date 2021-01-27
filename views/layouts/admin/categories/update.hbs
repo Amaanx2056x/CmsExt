@@ -8,6 +8,11 @@
   {{>admin}}
   {{>msgs}}
   <div class="container">
+    {{#each errors}}
+    <div class="alert alert-danger">
+      {{message}}<button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {{/each}}
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">

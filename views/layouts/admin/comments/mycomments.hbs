@@ -1,8 +1,11 @@
 <html>
 {{>links}}
 <link rel="stylesheet" href="/css/comment.css">
+
 {{>adminheader}}
-<h1 align="center">{{pageTitle}}</h1>
+
+<h1 align="center">
+  {{pageTitle}}</h1>
 <body style="
   background-image: url('/src/bg1.jpg');
   background-repeat: no-repeat;
@@ -12,8 +15,6 @@
 
     {{>msgs}}
     {{#if comments}}
-
-
     <div style="overflow-x: auto; background: white; opacity: 0.95;">
 
       <table class="table">

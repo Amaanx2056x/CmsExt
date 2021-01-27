@@ -19,6 +19,7 @@ router.get('/', adminAuth, (req, res, next)=> {
 
   Post.find({})
   .populate('category')
+  .populate('user')
   .then((posts)=> {
     if (posts.length == 0) {
       res.render('layouts/admin/posts/allposts', {
@@ -238,13 +239,19 @@ router.get('/postComment/:id', (req, res)=> {
     }})
   .populate('user')
   .then((post)=> {
-    var landing = (req.user.isAdmin ? 'layouts/admin/comments/allcomments': '/admin/comments/mycomments')
     if (post.comments.length == 0) {
-      res.render(landing, {
-        message: 'No comments made  yet.'
+      res.render('layouts/admin/comments/allcomments', {
+        post,
+
+        pageTitle: `Comments on : ${post.title}`,
+        message: 'No comments made yet.'
       })
     } else {
-      res.render(landing, post)
+      res.render('layouts/admin/comments/allcomments', {
+        post,
+
+        pageTitle: `Comments on : ${post.title}`
+      })
     }
   })
 })

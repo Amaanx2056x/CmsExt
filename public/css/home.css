@@ -41,6 +41,12 @@ a {
 #searchBox input ,#searchBox button {
   border-radius: 10px;
 }
+#readMore {
+  background-color: #7b2cbf;
+}
+#readMore:hover {
+  background-color: #9d4edd;
+}
 
 #searchBox input {
   border-right: none;

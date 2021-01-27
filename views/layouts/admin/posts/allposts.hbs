@@ -16,6 +16,7 @@
           <tr>
             <th></th>
             <th>File</th>
+            <th>Owner</th>
             <th>Title</th>
             <th>Status</th>
             <th>Category</th>
@@ -38,6 +39,7 @@
               <img height="50" width="60" class="img-responsive" src="/uploads/noImage.png" alt="Image Not Available">
               {{/if}}
             </td>
+            <td>{{user.username}}</td>
             <td>{{title}}</td>
             <td>{{status}}</td>
             <td>{{category.name}}</td>

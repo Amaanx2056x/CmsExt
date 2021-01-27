@@ -1,13 +1,13 @@
 <html>
 {{>links}}
 <link rel="stylesheet" href="/css/comment.css">
+{{#if user.isAdmin}}
 {{>admin}}
+{{else}}
+{{>adminheader}}
+{{/if}}
 <h1 align="center">
-  {{#if pageTitle}}
   {{pageTitle}}
-  {{else}}
-  Comments on : {{title}}
-  {{/if}}
 </h1>
 <body style="
   background-image: url('/src/bg1.jpg');
@@ -17,9 +17,7 @@
   <section style="width: 100%; height: 100%;">
 
     {{>msgs}}
-    {{#if comments}}
-
-
+    {{#if post.comments}}
     <div style="overflow-x: auto; background: white; opacity: 0.95;">
 
       <table class="table">
@@ -34,7 +32,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each comments}}
+          {{#each post.comments}}
           <tr>
             <td>{{counter @index}}</td>
             <td>{{user.username}}</td>
@@ -54,8 +52,6 @@
         </tbody>
       </table>
     </div>
-
-
 
 
     {{else}}

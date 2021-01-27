@@ -33,7 +33,7 @@ router.get('/', adminAuth, (req, res, next)=> {
 })
 
 router.post('/create', adminAuth, (req, res, next)=> {
-  if (req.body.name.trim.length() <= 0 || req.body.name.trim.length() > 15) {
+  if (req.body.name.trim.length() <= 1 || req.body.name.trim.length() > 15) {
     req.flash('error_msg', 'Category name can be 3-15 characters!')
     res.redirect('/admin/categories/')
   } else {
@@ -65,9 +65,14 @@ router.put('/update/:id', adminAuth, (req, res, next)=> {
   Category.findOne({
     _id: req.params.id
   }).then((category)=> {
-    if (req.body.name.trim().length <= 0 || req.body.name.trim().length > 15) {
-      req.flash('error_msg', 'Category name can be 3-15 characters!')
-      res.redirect('/admin/categories/')
+    let errors = []
+    if (req.body.name.trim().length <= 1 || req.body.name.trim().length > 15) {
+      errors.push({
+        message: 'Category name can be 3-15 characters!'
+      })
+      res.render('layouts/admin/categories/update', {
+        category, errors
+      })
     } else {
       category.name = req.body.name
       category.save().then((saved)=> {
