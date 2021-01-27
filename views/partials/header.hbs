@@ -1,34 +1,45 @@
+<style>
+  .navbar {
+    background-color: #5a189a;
+  }
+  .bttn {
+    font-weight: bold;
+    background-color: #7b2cbf;
+    color: #fff;
+    border: 0px solid;
+  }
+
+  .bttn:hover {
+    background-color: #9d4edd;
+    color: #10002b;
+  }
+</style>
+
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
-        {{#if user.isAdmin}}
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/"><i class="fa fa-hashtag" aria-hidden="true"></i> Admin</a>
-        </li>
-        {{/if}}
+  <nav class="navbar navbar-expand-lg py-4">
+    <div class="container">
+      <h1 class="navbar-brand text-white text-uppercase">TeamCMS</h1>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="text-white"><i class="fa fa-bars" aria-hidden="true"></i></span>
+      </button>
 
-        <a class="nav-link" href="/admin/posts/myposts"><i class="fa fa-area-chart" aria-hidden="true"></i> Account</a>
-        {{#if user}}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div class="collapse navbar-collapse" id="navbarNav">
 
-            <a class="dropdown-item" href="/logout"><i class="fa fa-user"></i>
-              {{user.username}}
-            </a>
-          </div>
-        </li>
-        {{else}}
-        <a class="nav-link" href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> login</a>
-        {{/if}}
+        <div class="row ml-lg-auto justify-content-center">
+
+          <a class="bttn btn btn-default m-1" href='/'>Home</a>
+          {{#if user.isAdmin}}
+          <a class="bttn btn btn-default m-1" href='/admin/'>Admin</a>
+          {{/if}}
+          <a class="bttn btn btn-default m-1" href='/admin/posts/myposts/'>Account</a>
+          {{#if user}}
+
+          <a class="bttn btn btn-default m-1" href='/logout'>Logout</a>
+          {{else}}
+          <a class="bttn btn btn-default m-1" href='/login'>Log in</a>
+          {{/if}}
+        </div>
       </div>
     </div>
   </nav>

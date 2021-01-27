@@ -41,6 +41,15 @@ a {
 #searchBox input ,#searchBox button {
   border-radius: 10px;
 }
+
+#searchBox input {
+  border-right: none;
+}
+#searchBox button {
+  background-color: #9d4edd;
+  border-left: 0px;
+}
+
 @media only screen and (max-width: 480px) {
   #postImage {
     height: 300px;

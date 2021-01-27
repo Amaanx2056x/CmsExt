@@ -34,6 +34,7 @@
   font-weight: bold;
   padding: 1rem;
   transition: all 0.2s;
+  background-color: #9d4edd;
 }
 
 .form-new>select ,#filePicker {
