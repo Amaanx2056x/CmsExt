@@ -1,5 +1,5 @@
 #commentBody {
-  height: 150px;
+  height: auto;
   overflow-y: auto;
-  width: 300px;
+  width: auto;
 }

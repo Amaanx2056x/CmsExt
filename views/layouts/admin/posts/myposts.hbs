@@ -1,7 +1,8 @@
 <html>
 {{>links}}
+<link rel="stylesheet" href="/css/faicons.css">
 {{>adminheader}}
-<h1 align="center">MY POSTS</h1>
+<h1 id="headings">MY POSTS</h1>
 <body style="
   background-image: url('/src/bg2.jpg');
   background-repeat: no-repeat;
@@ -10,7 +11,7 @@
   <section style="width: 100%; height: 100%;">
     {{>msgs}}
     {{#if posts}}
-    <div style="overflow-x: auto; background: white; opacity: 0.95;">
+    <div style="overflow-x: auto; background: white; opacity: 0.95; border-radius: 5px;">
       <table class='table table-bordered'>
         <thead>
           <tr>
@@ -43,12 +44,12 @@
             <td>{{category.name}}</td>
             <td>{{allowComments}}</td>
             <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
-            <td><a class="btn-btn-success" href="/admin/posts/postComment/{{id}}"><i class="fa fa-comments fa-3x"></i></a></td>
-            <td><button class='btn btn-success'><a href='/post/{{id}}'>VIEW</a></button></td>
-            <td> <a href='/admin/posts/update/{{id}}' class='btn btn-info'>EDIT</a></td>
+            <td><a href="/admin/posts/postComment/{{id}}" id="comment" class="fa fa-comments"></a></td>
+            <td><a class="fa fa-eye" id="view" href='/post/{{id}}'></a></td>
+            <td> <a class="fa fa-pencil-square" id="edit" href='/admin/posts/update/{{id}}'></a></td>
             <td>
               <form action='/admin/posts/{{id}}?_method=DELETE' method='post'>
-                <button type='submit' class='btn btn-danger'>DELETE</button>
+                <button type="submit" id="delete"><i class="fa fa-trash"></i></button>
               </form>
             </td>
           </tr>
@@ -58,7 +59,7 @@
     </div>
     {{else}}
     <div>
-      <h5 align="center">{{message}}</h5>
+      <h5 id="headings">{{message}}</h5>
       {{>noData}}
     </div>
     {{/if}}

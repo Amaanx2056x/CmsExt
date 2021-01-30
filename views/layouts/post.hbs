@@ -7,7 +7,7 @@
   {{>msgs}}
   <div class="container-fluid">
     <center>
-      <h1 class="m-3">{{post.title}}</h1>
+      <h1 class="m-3" id="headings">{{post.title}}</h1>
       {{#if post.file}}
       <img src="/uploads/{{post.file}}" class="rounded" alt="Image Unavailable">
       {{else}}
@@ -16,7 +16,7 @@
     </center>
     <hr>
     <div id="postData">
-      <p class="m-3">
+      <p class="somePost m-3">
         {{{post.body}}}
       </p>
       <hr>
@@ -46,9 +46,9 @@
       </div>
     </div>
     {{else}}
-    <h3>Comments are Not Allowed on this Post</h3><hr>
+    <h3 id="headings">Comments are Not Allowed on this Post</h3><hr>
     {{/if}}
-    {{else}} <h3>You need to <a href="/login">Log in </a>to Comment</h3><hr>
+    {{else}} <h3 id="headings">You need to <a href="/login">Log in </a>to Comment</h3><hr>
     {{/if}}
     {{#if post.comments}}
     <div id="commentBox" class="card mb-3" style="overflow: auto;height: 300px;">
@@ -62,7 +62,7 @@
       </div>
       {{/each}}
     </div>
-    {{else}}<h5>No comments have been made yet.</h5>
+    {{else}}<h5 id="headings">No comments have been made yet.</h5>
     {{/if}}
   </div>
   {{>scripts}}

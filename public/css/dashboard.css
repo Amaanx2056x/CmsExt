@@ -69,3 +69,13 @@ section {
   display: block;
   font-size: 18px;
 }
+#intro {
+  color: white;
+}
+#intro h1 {
+  padding: 15px;
+}
+#columnchart_values {
+  background: white;
+  opacity: .85;
+}

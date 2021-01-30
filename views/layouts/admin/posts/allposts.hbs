@@ -1,7 +1,8 @@
 <html>
 {{>links}}
+<link rel="stylesheet" href="/css/faicons.css">
 {{>admin}}
-<h1 align="center">ALL POSTS</h1>
+<h1 id="headings">ALL POSTS</h1>
 <body style="
   background-image: url('/src/bg2.jpg');
   background-repeat: no-repeat;
@@ -45,29 +46,29 @@
             <td>{{category.name}}</td>
             <td>{{allowComments}}</td>
             <td>{{dateFormat date 'MMMM Do YYYY'}}</td>
-            <td><a class="btn-btn-success" href="/admin/posts/postComment/{{id}}"><i class="fa fa-comments fa-3x"></i></a></td>
-            <td><button class='btn btn-success'><a href='/post/{{id}}'>VIEW</a></button></td>
-            <td> <a href='/admin/posts/update/{{id}}' class='btn btn-info'>EDIT</a></td>
+            <td><a href="/admin/posts/postComment/{{id}}" id="comment" class="fa fa-comments"></a></td>
+            <td><a class="fa fa-eye" id="view" href='/post/{{id}}'></a></td>
+            <td> <a class="fa fa-pencil-square" id="edit" href='/admin/posts/update/{{id}}'></a></td>
             <td>
               <form action='/admin/posts/{{id}}?_method=DELETE' method='post'>
-                <button type='submit' class='btn btn-danger'>DELETE</button>
+                <button type="submit" id="delete"><i class="fa fa-trash"></i></button>
               </form>
             </td>
 
-          </td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-  {{else}}
-  <div>
-    <h5 align="center">{{message}}</h5>
-    {{>noData}}
-  </div>
-  {{/if}}
-  {{>footer}}
-  {{>scripts}}
-</section>
+
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{else}}
+    <div>
+      <h5 id="headings">{{message}}</h5>
+      {{>noData}}
+    </div>
+    {{/if}}
+    {{>footer}}
+    {{>scripts}}
+  </section>
 </body>
 </html>

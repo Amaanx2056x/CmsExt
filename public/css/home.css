@@ -6,7 +6,7 @@ body {
 }
 #searchBox,#categoryBox {
   background: transparent;
-  width: 75%;
+  border: none;
 }
 #categoryHead {
   text-align: center;
@@ -21,6 +21,15 @@ body {
 a {
   color: black;
   font-weight: bold;
+}
+
+#widgets {
+  margin: auto;
+  width: 75%;
+}
+#headings {
+  text-align: center;
+  color: white;
 }
 
 #postImage {
@@ -38,9 +47,6 @@ a {
   opacity: .95;
 }
 
-#searchBox input ,#searchBox button {
-  border-radius: 10px;
-}
 #readMore {
   background-color: #7b2cbf;
 }
@@ -48,20 +54,24 @@ a {
   background-color: #9d4edd;
 }
 
-#searchBox input {
-  border-right: none;
+.input-group input {
+  border: 1px solid #7b2cbf !important;
+  border-right: none !important;
+  border-radius: 5px 0 0 5px !important;
 }
-#searchBox button {
-  background-color: #9d4edd;
-  border-left: 0px;
+.input-group button {
+  border: 1px solid #7b2cbf !important;
+  border-radius: 0 5px 5px 0 !important;
+  background: white;
+  border-left: none !important;
+  color: #7b2cbf;
 }
-
 @media only screen and (max-width: 480px) {
   #postImage {
     height: 300px;
   }
-  #searchBox,#categoryBox {
-    background: transparent;
+  #widgets {
+    width: 100%;
   }
   #categoryBox {
     background: white;

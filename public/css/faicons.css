@@ -1,0 +1,23 @@
+td,th {
+  text-align: center;
+}
+#comment,#view,#edit {
+  color: #7b2cbf;
+  font-size: 40px;
+}
+#accept {
+  color: green;
+  background: white;
+  border: none;
+  font-size: 40px;
+}
+#delete {
+  color: red;
+  background: white;
+  border: none;
+  font-size: 40px;
+}
+#headings {
+  text-align: center;
+  color: white;
+}
