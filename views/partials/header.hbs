@@ -14,7 +14,6 @@
     color: #10002b;
   }
 </style>
-
 <header>
   <nav class="navbar navbar-expand-lg py-4">
     <div class="container">
@@ -27,14 +26,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
 
         <div class="row ml-lg-auto justify-content-center">
-
           <a class="bttn btn btn-default m-1" href='/'>Home</a>
+          {{#if user}}
+
+          
           {{#if user.isAdmin}}
           <a class="bttn btn btn-default m-1" href='/admin/'>Admin</a>
           {{/if}}
-          <a class="bttn btn btn-default m-1" href='/admin/posts/myposts/'>Profile</a>
-          {{#if user}}
-
+          <a class="bttn btn btn-default m-1" href='/admin/posts/myposts/'>My Posts</a>
+          <a class="bttn btn btn-default m-1" href='/admin/posts/create'>Create Post</a>
+          <a class="bttn btn btn-default m-1" href='/admin/categories/reqCategory'>Category</a>
+          <a class="bttn btn btn-default m-1" href='/admin/comments/mycomments'>My Comments</a>
+          
+          <a class="bttn btn btn-default m-1" href='/admin/profile'>Edit Profile</a>
           <a class="bttn btn btn-default m-1" href='/logout'>Logout</a>
           {{else}}
           <a class="bttn btn btn-default m-1" href='/login'>Log in</a>
