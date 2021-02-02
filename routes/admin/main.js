@@ -1,4 +1,6 @@
 const express = require('express')
+const cloudinary = require("cloudinary").v2;
+require('../../helpers/cloudConf')
 const {
   deleteMail
 } = require("../../helpers/mail")
@@ -66,6 +68,7 @@ router.delete('/profile/:id', (req, res)=> {
     user.deleteOne()
     posts.forEach((post)=> {
       if (post.file) {
+        cloudinary.uploader.destroy(post.publicid.toString())
         fs.unlink(uploadsDir + post.file, (err)=> {})
       }
       post.deleteOne()

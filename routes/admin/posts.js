@@ -1,5 +1,7 @@
 const express = require('express')
 const Post = require('../../models/Post')
+const cloudinary = require("cloudinary").v2;
+require('../../helpers/cloudConf')
 const {
   userAuth,
   adminAuth
@@ -87,6 +89,7 @@ router.get('/update/:id', (req, res)=> {
 })
 
 router.post('/create', (req, res)=> {
+
   Category.find({
     approved: true
   }).then(categories=> {
@@ -109,14 +112,23 @@ router.post('/create', (req, res)=> {
         body: req.body.body
       })
     } else {
+      const newPost = new Post()
       let filename = ""
+
+
       if (!isEmpty(req.files)) {
         let file = req.files.file
         filename = Date.now()+"-"+file.name
         let dirUploads = './public/uploads/'
 
+
         file.mv(dirUploads+filename, (err)=> {
           if (err) throw err;
+          cloudinary.uploader.upload('./public/uploads/'+filename).then(result=> {
+            newPost.file = result.url,
+            newPost.publicid = result.public_id
+            newPost.save()
+          })
         })
       }
 
@@ -125,15 +137,14 @@ router.post('/create', (req, res)=> {
       if (!req.body.allowComments) {
         allowComments = false
       }
-      const newPost = new Post({
-        user: req.user.id,
-        title: req.body.title,
-        status: req.body.status,
-        category: req.body.category,
-        allowComments: allowComments,
-        body: req.body.body,
-        file: filename
-      })
+
+      newPost.user = req.user.id,
+      newPost.title = req.body.title,
+      newPost.status = req.body.status,
+      newPost.category = req.body.category,
+      newPost.allowComments = allowComments,
+      newPost.body = req.body.body
+
       newPost.save().then((saved)=> {
         req.flash('success_msg', `Post ${saved.title} was created successfully!`)
         res.redirect('/admin/posts/myposts')
@@ -144,7 +155,8 @@ router.post('/create', (req, res)=> {
   })
 })
 
-router.put('/update/:id', (req, res)=> {
+router.put('/update/:id', (req,
+  res)=> {
   Post.findOne({
     _id: req.params.id
   }).then(post=> {
@@ -181,15 +193,30 @@ router.put('/update/:id', (req, res)=> {
       post.category = req.body.category,
       post.allowComments = allowComments,
       post.body = req.body.body
+      if (post.file) {
+        cloudinary.uploader.destroy(post.publicid.toString()).then(result=> {
+          post.file = ""
+          post.publicid = ""
+          post.save()
+        })
+      }
 
       if (!isEmpty(req.files)) {
         let file = req.files.file
         filename = Date.now()+"-"+file.name
         let dirUploads = './public/uploads/'
-        post.file = filename
+
 
         file.mv(dirUploads+filename, (err)=> {
           if (err) throw err;
+          cloudinary.uploader.upload('./public/uploads/'+filename).then(result=> {
+            post.file = result.url,
+            post.publicid = result.public_id
+            post.save()
+
+
+          })
+
         })
       }
 
@@ -210,6 +237,9 @@ router.delete('/:id', (req, res)=> {
   .then((post)=> {
     fs.unlink(uploadsDir + post.file,
       (err)=> {
+        if (post.file) {
+          cloudinary.uploader.destroy(post.publicid.toString())
+        }
         if (post.comments.length > 0) {
           post.comments.forEach((comment)=> {
             comment.deleteOne()

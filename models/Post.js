@@ -32,6 +32,9 @@ const PostSchema = new Schema({
     file: {
       type: String
     },
+    publicid: {
+      type: String
+    },
     date: {
       type: Date,
       default: Date.now()

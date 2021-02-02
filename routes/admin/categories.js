@@ -1,4 +1,6 @@
 const express = require('express')
+const cloudinary = require("cloudinary").v2;
+require('../../helpers/cloudConf')
 const Category = require('../../models/Category')
 const Post = require('../../models/Post')
 const {
@@ -33,13 +35,13 @@ router.get('/', adminAuth, (req, res, next)=> {
 })
 
 router.post('/create', adminAuth, (req, res, next)=> {
-  if (req.body.name.trim.length() <= 1 || req.body.name.trim.length() > 15) {
+  if (req.body.name.trim().length <= 1 || req.body.name.trim().length > 15) {
     req.flash('error_msg', 'Category name can be 3-15 characters!')
     res.redirect('/admin/categories/')
   } else {
     const newCategory = new Category({
       name: req.body.name,
-      approved: (req.body.isAdmin ? true: false)
+      approved: true
     })
     newCategory.save().then((saved)=> {
       req.flash('success_msg', `Category ${saved.name} was created successfully!`)
@@ -101,6 +103,9 @@ router.delete('/:id', adminAuth, (req, res, next)=> {
     .then((posts)=> {
       posts.forEach((post)=> {
         fs.unlink(uploadsDir + post.file, (err)=> {
+          if (post.file) {
+            cloudinary.uploader.destroy(post.publicid.toString())
+          }
           if (post.comments.length > 0) {
             post.comments.forEach((comment)=> {
               comment.deleteOne()
