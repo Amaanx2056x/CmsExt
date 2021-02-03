@@ -18,6 +18,7 @@ router.get('/', (req, res)=> {
   Post.find({
     status: 'public'
   })
+  .sort({date : -1})
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate('user').then((post)=> {
@@ -277,6 +278,7 @@ router.post('/search', (req, res)=> {
       $regex: req.body.searchText,
       $options: 'i'
     }})
+   .sort({date : -1})
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate ('user')
@@ -311,6 +313,7 @@ router.get('/categories/:id', (req, res)=> {
   Post.find({
     category: req.params.id
   })
+  .sort({date : -1})
   .populate('category')
   .skip((perPage * page)-perPage)
   .limit(perPage)
