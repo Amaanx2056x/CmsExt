@@ -1,15 +1,13 @@
 <html>
 {{>links}}
 <link rel="stylesheet" href="/css/faicons.css">
-{{>admin}}
-<h1 id="headings">ALL POSTS</h1>
-<body style="
-  background-image: url('/src/bg2.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;">
-  <section style="width: 100%; height: 100%;">
+
+
+<body>
+  <div id="wrap">
+    {{>admin}}
     {{>msgs}}
+    <h1 id="headings">ALL POSTS</h1>
     {{#if posts}}
     <div style="overflow-x: auto; background: white; opacity: 0.95;">
       <table class='table table-bordered'>
@@ -67,8 +65,9 @@
       {{>noData}}
     </div>
     {{/if}}
-    {{>footer}}
 
-  </section>
+
+  </div>
+  {{>footer}}
 </body>
 </html>

@@ -4,7 +4,7 @@
   {{>links}}
 
   <link rel="stylesheet" href="/css/dashboard.css">
-  {{>admin}}
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
 
@@ -58,7 +58,9 @@
   </script>
 </head>
 <body>
-  <section>
+
+  <div id="wrap">
+    {{>admin}}
 
     <div id="intro">
       <h1>Welcome {{user.username}}</h1>
@@ -102,9 +104,10 @@
 
 
 
-    {{>footer}}
 
-  </section>
+
+  </div>
+  {{>footer}}
 </body>
 
 </html>

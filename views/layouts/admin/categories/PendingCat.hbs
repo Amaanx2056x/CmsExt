@@ -1,57 +1,58 @@
+<html>
 {{>links}}
 <link rel="stylesheet" href="/css/inputStyle.css">
 <link rel="stylesheet" href="/css/faicons.css">
-<section style="width: 100%; height: 100%;
-  background-image: url('/src/bg2.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;">
-  {{>admin}}
-  {{>msgs}}
+<body>
+  <div id="wrap">
+    {{>admin}}
+    {{>msgs}}
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <h1 id="headings">Approval Pending</h1>
-        {{#if categories}}
-        <div style="background: white; opacity: 0.95;">
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>NAME</th>
-                <th>ACCEPT</th>
-                <th>REJECT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each categories}}
-              <tr>
-                <td>{{counter @index}}</td>
-                <td>{{name}}</td>
-                <td> <form action='/admin/categories/accept/{{id}}?_method=PUT' method="post">
-                  <button type='submit' id="accept"><i class="fa fa-check-circle"></i></button>
-                </form>
-                </td>
-                <td>
-                  <form action='/admin/categories/{{id}}?_method=DELETE' method='post'>
-                    <button type='submit' id='delete'><i class="fa fa-trash"></i></button>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <h1 id="headings">Approval Pending</h1>
+          {{#if categories}}
+          <div style="background: white; opacity: 0.95;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>NAME</th>
+                  <th>ACCEPT</th>
+                  <th>REJECT</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each categories}}
+                <tr>
+                  <td>{{counter @index}}</td>
+                  <td>{{name}}</td>
+                  <td> <form action='/admin/categories/accept/{{id}}?_method=PUT' method="post">
+                    <button type='submit' id="accept"><i class="fa fa-check-circle"></i></button>
                   </form>
-                </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
+                  </td>
+                  <td>
+                    <form action='/admin/categories/{{id}}?_method=DELETE' method='post'>
+                      <button type='submit' id='delete'><i class="fa fa-trash"></i></button>
+                    </form>
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          {{else}}
+          <div>
+            <h5 id="headings">{{message}}</h5>
+            {{>noData}}
+          </div>
+          {{/if}}
         </div>
-        {{else}}
-        <div>
-          <h5 id="headings">{{message}}</h5>
-          {{>noData}}
-        </div>
-        {{/if}}
       </div>
     </div>
-  </div>
 
+
+  </div>
   {{>footer}}
-</section>
+</body>
+</html>

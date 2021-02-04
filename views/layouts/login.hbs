@@ -2,12 +2,8 @@
 <html>
 {{>links}}
 <link rel="stylesheet" href="/css/inputStyle.css">
-<body style="
-  background-image: url('../src/bg2.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;">
-  <div style="width: 100%; height: 100%;">
+<body>
+  <div id="wrap">
     {{>header}}
     {{>msgs}}
     <div class="container">
@@ -43,9 +39,9 @@
         </div>
       </div>
     </div>
-    {{>footer}}
+
 
   </div>
-
+  {{>footer}}
 </body>
 </html>

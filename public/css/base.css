@@ -1,0 +1,16 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+body {
+  background-image: url('../src/bg2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#wrap {
+  width: 100%;
+  min-height: 100vh;
+}

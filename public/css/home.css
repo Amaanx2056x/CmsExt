@@ -1,9 +1,3 @@
-body {
-  background-image: url('../src/bg2.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
 #searchBox,#categoryBox {
   background: transparent;
   border: none;
@@ -34,7 +28,7 @@ a {
 
 #postImage {
   width: 90%;
-  height: 450px;
+  height: 400px;
   padding: 5px;
 }
 #cardTitle {
@@ -72,9 +66,5 @@ a {
   }
   #widgets {
     width: 100%;
-  }
-  #categoryBox {
-    background: white;
-    opacity: .8;
   }
 }
