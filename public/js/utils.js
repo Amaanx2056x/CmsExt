@@ -1,5 +1,4 @@
 document.querySelector("#noScript").setAttribute("display", "none")
-
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);
 }
@@ -11,19 +10,21 @@ function restrict() {
   }
 }
 
-var checkbox = document.querySelector('[picker]');
-checkbox.addEventListener('change', function(e) {
-  var fields = document.querySelectorAll('[toshow]')
-  if (this.checked) {
-    for (var i = 0; i < fields.length; i++) {
-      fields[i].setAttribute("type", "text")
+function ShowHide() {
+  var checkbox = document.querySelector('[picker]');
+  checkbox.addEventListener('change', function(e) {
+    var fields = document.querySelectorAll('[toshow]')
+    if (this.checked) {
+      for (var i = 0; i < fields.length; i++) {
+        fields[i].setAttribute("type", "text")
+      }
+    } else {
+      for (var k = 0; k < fields.length; k++) {
+        fields[k].setAttribute("type", "password")
+      }
     }
-  } else {
-    for (var k = 0; k < fields.length; k++) {
-      fields[k].setAttribute("type", "password")
-    }
-  }
-})
+  })
+}
 
 function deleteUnlock() {
   var userInput = document.querySelector("#userName").value;
