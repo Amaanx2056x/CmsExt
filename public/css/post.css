@@ -3,13 +3,16 @@
   height: 600px;
 }
 
-#postData, .text-muted ,#commentBox {
+#commentBox {
   background: white;
   opacity: .95;
   border-radius: 10px;
   width: 95%;
   padding: 5px;
   margin: auto;
+}
+#postData {
+  color: white;
 }
 
 #headings {

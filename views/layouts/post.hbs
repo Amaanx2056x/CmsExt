@@ -12,7 +12,7 @@
         {{#if post.file}}
         <img src="{{post.file}}" class="rounded" alt="Image Unavailable">
         {{else}}
-        <img src="/uploads/noImage.png" class="rounded" alt="Image Unavailable">
+        <img src="/src/noImage.png" class="rounded" alt="Image Unavailable">
         {{/if}}
       </center>
       <hr>
@@ -55,7 +55,7 @@
       <div id="commentBox" class="card mb-3" style="overflow: auto;height: 300px;">
         {{#each post.comments}}
         <div class="media m-3">
-          <img class="d-flex mr-3 rounded-circle" src="/uploads/profile.jpg" alt="" height="40" width="40">
+          <img class="d-flex mr-3 rounded-circle" src="/src/profile.jpg" alt="" height="40" width="40">
           <div class="media-body">
             <h5 class="mt-0">{{user.username}}</h5>
             {{body}}

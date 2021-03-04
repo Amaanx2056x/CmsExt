@@ -12,7 +12,7 @@
   background: white;
   opacity: .8;
 }
-a {
+.cat-links {
   color: black;
   font-weight: bold;
 }
@@ -48,12 +48,12 @@ a {
   background-color: #9d4edd;
 }
 
-.input-group input {
+#input-grp input {
   border: 1px solid #7b2cbf !important;
   border-right: none !important;
   border-radius: 5px 0 0 5px !important;
 }
-.input-group button {
+#input-grp button {
   border: 1px solid #7b2cbf !important;
   border-radius: 0 5px 5px 0 !important;
   background: white;

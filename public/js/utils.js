@@ -1,3 +1,9 @@
+document.querySelector("#noScript").setAttribute("display", "none")
+
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
+}
+
 function restrict() {
   var token = document.querySelector('[limited]')
   if (token.value.length > 5) {
