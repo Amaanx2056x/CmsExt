@@ -20,7 +20,9 @@ router.all('/*', userAuth, (req, res, next)=> {
 router.get('/', adminAuth, (req, res, next)=> {
 
   Post.find({})
-  .sort({date : -1})
+  .sort({
+    date: -1
+  })
   .populate('category')
   .populate('user')
   .then((posts)=> {
@@ -41,7 +43,9 @@ router.get('/myposts', (req, res)=> {
   Post.find({
     user: req.user.id
   })
-    .sort({date : -1})
+  .sort({
+    date: -1
+  })
   .populate('category')
   .then((posts)=> {
     if (posts.length == 0) {
@@ -132,6 +136,8 @@ router.post('/create', (req, res)=> {
             newPost.save()
           })
         })
+
+
       }
 
 
