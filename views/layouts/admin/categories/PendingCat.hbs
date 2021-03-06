@@ -31,11 +31,10 @@
                     <button type='submit' id="accept"><i class="fa fa-check-circle"></i></button>
                   </form>
                   </td>
-                  <td>
-                    <form action='/admin/categories/{{id}}?_method=DELETE' method='post'>
-                      <button type='submit' id='delete'><i class="fa fa-trash"></i></button>
-                    </form>
-                  </td>
+                     <td>
+                        <button data-toggle="modal" data-target="#exampleModal" id="delete" onclick="deleteCategory('{{id}}')"><i class="fa fa-trash"></i></button>
+                              
+                    </td>
                 </tr>
                 {{/each}}
               </tbody>
@@ -53,6 +52,7 @@
 
 
   </div>
+  {{>modal}}
   {{>footer}}
 </body>
 </html>

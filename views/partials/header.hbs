@@ -2,15 +2,14 @@
   .navbar {
     background-color: #5a189a;
   }
-  .bttn {
+  .bttn, .btn2{
     font-weight: bold;
     background-color: #7b2cbf;
     color: #fff;
     border: 0px solid;
   }
-
-  .bttn:hover {
-    background-color: #9d4edd;
+  .bttn:hover, .btn2:hover {
+    background: #9d4edd;
     color: #10002b;
   }
 </style>
@@ -39,7 +38,7 @@
           <a class="bttn btn btn-default m-1" href='/admin/comments/mycomments'>My Comments</a>
 
           <a class="bttn btn btn-default m-1" href='/admin/profile'>Edit Profile</a>
-          <a class="bttn btn btn-default m-1" href='/logout'>Logout</a>
+          <a class="bttn btn btn-default m-1" data-toggle="modal" data-target="#exampleModalCenter">Logout</a>
           {{else}}
           <a class="bttn btn btn-default m-1" href='/login'>Log in</a>
           <a class="bttn btn btn-default m-1" href='/register'>Register</a>
@@ -53,3 +52,25 @@
   THIS PAGE WON'T WORK WITH JAVASCRIPT DISABLED, PLEASE ENABLE JAVASCRIPT AND RELOAD THE PAGE!
 </div>
 </noscript>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confirm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to Log out?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <form action="/logout">
+        <button type="submit" class="btn2 btn btn-default">Log Out</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

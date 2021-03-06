@@ -35,3 +35,23 @@ function deleteUnlock() {
     document.querySelector("#deleteAcc").disabled = true;
   }
 }
+
+function deleteCategory(id){
+ document.querySelector("#modalForm").action=`/admin/categories/${id}?_method=DELETE`;
+}
+
+function deleteComment(id){
+ document.querySelector("#modalForm").action=`/admin/comments/${id}?_method=DELETE`;
+}
+function deletePost(id){
+ document.querySelector("#modalForm").action=`/admin/posts/${id}?_method=DELETE`;
+}
+function deleteUser(id){
+   document.querySelector("#modalForm").action=`/admin/profile/${id}?_method=DELETE`;
+}
+function demoteUser(id){
+   document.querySelector("#modalFormUser").action=`/admin/demote/${id}?_method=PUT`;
+}
+function promoteUser(id){
+   document.querySelector("#modalFormUser").action=`/admin/promote/${id}?_method=PUT`;
+}

@@ -42,24 +42,23 @@
 
               {{#if isAdmin}}
 
-              <form action='/admin/demote/{{id}}?_method=PUT' method='post'>
-                <button type='submit' class='btn btn-danger'>DEMOTE USER</button>
-              </form>
+              <button data-toggle="modal" data-target="#exampleModalUser" class="btn btn-danger" onclick="demoteUser('{{id}}')">DEMOTE USER</button>
 
               {{else}}
 
 
-              <form action='/admin/promote/{{id}}?_method=PUT' method='post'>
-                <button type='submit' class='btn btn-success'>MAKE ADMIN</button>
-              </form>
+                               
+                        <button data-toggle="modal" data-target="#exampleModalUser" class="btn btn-success" onclick="promoteUser('{{id}}')">MAKE ADMIN</button>
+                              
+                    
               {{/if}}
             </td>
 
 
-            <td> <form action='/admin/profile/{{id}}?_method=DELETE' method='post'>
-              <button type='submit' class='btn btn-danger'>REMOVE USER</button>
-            </form>
-            </td>
+                               <td>
+                        <button data-toggle="modal" data-target="#exampleModal" class="btn btn-danger" onclick="deleteUser('{{id}}')">REMOVE USER</button>
+                              
+                    </td>
           </tr>
           {{/each}}
         </tbody>
@@ -78,6 +77,7 @@
 
 
   </div>
+  {{>modal}}
   {{>footer}}
 </body>
 </html>

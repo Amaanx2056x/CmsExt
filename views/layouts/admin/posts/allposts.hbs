@@ -47,11 +47,10 @@
             <td><a href="/admin/posts/postComment/{{id}}" id="comment" class="fa fa-comments"></a></td>
             <td><a class="fa fa-eye" id="view" href='/post/{{id}}'></a></td>
             <td> <a class="fa fa-pencil-square" id="edit" href='/admin/posts/update/{{id}}'></a></td>
-            <td>
-              <form action='/admin/posts/{{id}}?_method=DELETE' method='post'>
-                <button type="submit" id="delete"><i class="fa fa-trash"></i></button>
-              </form>
-            </td>
+                    <td>
+                        <button data-toggle="modal" data-target="#exampleModal" id="delete" onclick="deletePost('{{id}}')"><i class="fa fa-trash"></i></button>
+                              
+                    </td>
 
 
           </tr>
@@ -68,6 +67,7 @@
 
 
   </div>
+  {{>modal}}
   {{>footer}}
 </body>
 </html>
