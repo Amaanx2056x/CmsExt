@@ -9,7 +9,8 @@ const {
 const Category = require('../../models/Category')
 const {
   isEmpty,
-  uploadsDir
+  uploadsDir,
+  UploadImage
 } = require('../../helpers/upload')
 const fs = require('fs')
 const router = express.Router()
@@ -120,6 +121,16 @@ router.post('/create', (req, res)=> {
     } else {
       const newPost = new Post()
       let filename = ""
+      let allowComments = true
+      if (!req.body.allowComments) {
+        allowComments = false
+      }
+      newPost.user = req.user.id,
+      newPost.title = req.body.title,
+      newPost.status = req.body.status,
+      newPost.category = req.body.category,
+      newPost.allowComments = allowComments,
+      newPost.body = req.body.body
 
 
       if (!isEmpty(req.files)) {
@@ -128,37 +139,34 @@ router.post('/create', (req, res)=> {
         let dirUploads = './public/uploads/'
 
 
-        file.mv(dirUploads+filename, (err)=> {
+        file.mv(dirUploads+filename, async (err)=> {
           if (err) throw err;
-          cloudinary.uploader.upload('./public/uploads/'+filename).then(result=> {
-            newPost.file = result.url,
-            newPost.publicid = result.public_id
-            newPost.save()
+          var result = await UploadImage('./public/uploads/'+filename)
+          newPost.file = result.url
+          newPost.publicid = result.public_id;
+          newPost.save().then((saved)=> {
+            req.flash('success_msg', `Post ${saved.title} was created successfully!`)
+            res.redirect('/admin/posts/myposts')
+          }).catch((err)=> {
+            console.log('error', err)
           })
+
         })
 
 
       }
 
-
-      let allowComments = true
-      if (!req.body.allowComments) {
-        allowComments = false
-      }
-
-      newPost.user = req.user.id,
-      newPost.title = req.body.title,
-      newPost.status = req.body.status,
-      newPost.category = req.body.category,
-      newPost.allowComments = allowComments,
-      newPost.body = req.body.body
-
+      else{
       newPost.save().then((saved)=> {
         req.flash('success_msg', `Post ${saved.title} was created successfully!`)
         res.redirect('/admin/posts/myposts')
-      }).catch((err)=> {
-        console.log('error', err)
-      })
+          }).catch((err)=> {
+            console.log('error', err)
+          })
+      }
+      
+
+
     }
   })
 })
@@ -190,7 +198,8 @@ router.put('/update/:id', (req,
 
         })
       })
-    } else {
+    } 
+    else {
       let allowComments = true
       if (!req.body.allowComments) {
         allowComments = false
@@ -215,24 +224,31 @@ router.put('/update/:id', (req,
         let dirUploads = './public/uploads/'
 
 
-        file.mv(dirUploads+filename, (err)=> {
+        file.mv(dirUploads+filename, async (err)=> {
           if (err) throw err;
-          cloudinary.uploader.upload('./public/uploads/'+filename).then(result=> {
+          var result = await UploadImage('./public/uploads/'+filename)
+          
             post.file = result.url,
             post.publicid = result.public_id
-            post.save()
+            post.save().then((saved)=> {
+            req.flash('success_msg', `Post ${saved.title} was updated successfully!`)
+            var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
+            res.redirect(landing)
+            })
 
 
           })
-
-        })
       }
 
+        
+      
+      else{
       post.save().then((saved)=> {
         req.flash('success_msg', `Post ${saved.title} was updated successfully!`)
         var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
         res.redirect(landing)
       })
+      }
     }
   })
 })
