@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 {{>links}}
+
 <body>
   <div id="wrap">
     {{>header}}
@@ -20,11 +21,11 @@
           {{{post.body}}}
         </p>
         <hr>
-        <p class="text-muted m-3">
+        <p class="nonmuted m-3">
           Posted by {{post.user.username}} on {{dateFormat post.date 'MMMM Do YYYY'}}
         </p>
         {{#if post.lastEdited}}
-        <p class="text-muted m-3">
+        <p class="nonmuted m-3">
           Last Edited by {{post.lastEdited.username}}
         </p>
         {{/if}}

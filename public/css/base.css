@@ -32,7 +32,11 @@ body {
   color: black;
   font-weight: bold;
 }
-
+.nonmuted{
+  color: #010211;
+  font-style: italic;
+  font-weight: bold;
+}
 #widgets {
   margin: auto;
   width: 75%;

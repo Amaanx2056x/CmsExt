@@ -59,13 +59,14 @@ router.delete('/profile/:id', (req, res)=> {
       _id: req.params.id
     }).exec(),
     Post.find({
-      user: req.user
+      user: req.params.id
     }).exec(),
     Comment.deleteMany({
-      user: req.user
+      user: req.params.id
     }).exec()
   ]
   Promise.all(toRemove).then(([user, posts])=> {
+
 
     user.deleteOne()
     posts.forEach((post)=> {
