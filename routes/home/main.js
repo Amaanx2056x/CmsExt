@@ -18,7 +18,9 @@ router.get('/', (req, res)=> {
   Post.find({
     status: 'public'
   })
-  .sort({date : -1})
+  .sort({
+    date: -1
+  })
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate('user').then((post)=> {
@@ -182,7 +184,7 @@ router.get('/post/:id', (req, res)=> {
       approved: true
     }).then((categories)=> {
       res.render('layouts/post', {
-        post, categories
+        post, categories, first: (post.comments.length > 0) ? true: false
       })
     })
   })
@@ -278,7 +280,9 @@ router.post('/search', (req, res)=> {
       $regex: req.body.searchText,
       $options: 'i'
     }})
-   .sort({date : -1})
+  .sort({
+    date: -1
+  })
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate ('user')
@@ -313,7 +317,9 @@ router.get('/categories/:id', (req, res)=> {
   Post.find({
     category: req.params.id
   })
-  .sort({date : -1})
+  .sort({
+    date: -1
+  })
   .populate('category')
   .skip((perPage * page)-perPage)
   .limit(perPage)

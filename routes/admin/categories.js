@@ -117,7 +117,7 @@ router.delete('/:id', adminAuth, (req, res, next)=> {
     })
     category.deleteOne()
     req.flash('success_msg', `Category ${category.name} was deleted successfully!`)
-    res.redirect('/admin/categories/')
+    res.redirect('back')
   })
 })
 

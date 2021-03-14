@@ -68,12 +68,12 @@ router.delete('/:id', (req, res)=> {
     }, {
       $pull: {
         comments: req.params.id
-      }}, (err, data)=> {
+      }}, (err,
+      data)=> {
       if (err) throw err;
       comment.deleteOne()
       req.flash('success_msg', `Comment was deleted successfully!`)
-      var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/comments/mycomments')
-      res.redirect(landing)
+      res.redirect('back')
     })
   })
 })

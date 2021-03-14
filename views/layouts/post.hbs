@@ -52,8 +52,9 @@
       {{/if}}
       {{else}} <h3 id="headings">You need to <a href="/login">Log in </a>to Comment</h3><hr>
       {{/if}}
-      {{#if post.comments}}
+
       <div id="commentBox" name="commentList" class="card mb-3" style="overflow: auto;height: 300px;">
+        <h5 class="hideMe" {{#if first}} style="display: none;"{{/if}}>No comments have been made yet.</h5>
         {{#each post.comments}}
         <div class="media m-3">
           <img class="d-flex mr-3 rounded-circle" src="/src/profile.jpg" alt="" height="40" width="40">
@@ -64,19 +65,22 @@
         </div>
         {{/each}}
       </div>
-      {{else}}<h5 id="headings">No comments have been made yet.</h5>
-      {{/if}}
+
+
     </div>
   </div>
   <script>
     $(document).ready(function () {
       $("#commentIt").on('click', function () {
+        $("#commentIt").prop("disabled", true)
         $.post('/admin/comments/create',
           {
             body: $("#comment").val().toString(),
             id: $("#postId").attr("value").toString()
           }).done(function (data) {
             $("#comment").val('');
+            $(".hideMe").hide();
+            $("#commentIt").prop("disabled", false)
             $("[name='commentList']").append(`<div class="media m-3">
               <img class="d-flex mr-3 rounded-circle" src="/src/profile.jpg" alt="" height="40" width="40">
               <div class="media-body">
@@ -87,6 +91,7 @@
             $("[name='commentList']").animate({
               scrollTop: $("[name='commentList']").prop("scrollHeight")}, 1000);
           }).fail(function () {
+            $("#commentIt").prop("disabled", false)
             alert('Unknown Server Error!')
           })
 

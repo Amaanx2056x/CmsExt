@@ -154,17 +154,15 @@ router.post('/create', (req, res)=> {
         })
 
 
+      } else {
+        newPost.save().then((saved)=> {
+          req.flash('success_msg', `Post ${saved.title} was created successfully!`)
+          res.redirect('/admin/posts/myposts')
+        }).catch((err)=> {
+          console.log('error', err)
+        })
       }
 
-      else{
-      newPost.save().then((saved)=> {
-        req.flash('success_msg', `Post ${saved.title} was created successfully!`)
-        res.redirect('/admin/posts/myposts')
-          }).catch((err)=> {
-            console.log('error', err)
-          })
-      }
-      
 
 
     }
@@ -198,8 +196,7 @@ router.put('/update/:id', (req,
 
         })
       })
-    } 
-    else {
+    } else {
       let allowComments = true
       if (!req.body.allowComments) {
         allowComments = false
@@ -210,15 +207,11 @@ router.put('/update/:id', (req,
       post.category = req.body.category,
       post.allowComments = allowComments,
       post.body = req.body.body
-      if (post.file) {
-        cloudinary.uploader.destroy(post.publicid.toString()).then(result=> {
-          post.file = ""
-          post.publicid = ""
-          post.save()
-        })
-      }
+
 
       if (!isEmpty(req.files)) {
+        cloudinary.uploader.destroy(post.publicid.toString()).then(result=> {})
+
         let file = req.files.file
         filename = Date.now()+"-"+file.name
         let dirUploads = './public/uploads/'
@@ -227,27 +220,23 @@ router.put('/update/:id', (req,
         file.mv(dirUploads+filename, async (err)=> {
           if (err) throw err;
           var result = await UploadImage('./public/uploads/'+filename)
-          
-            post.file = result.url,
-            post.publicid = result.public_id
-            post.save().then((saved)=> {
+
+          post.file = result.url,
+          post.publicid = result.public_id
+          post.save().then((saved)=> {
             req.flash('success_msg', `Post ${saved.title} was updated successfully!`)
             var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
             res.redirect(landing)
-            })
-
-
           })
-      }
 
-        
-      
-      else{
-      post.save().then((saved)=> {
-        req.flash('success_msg', `Post ${saved.title} was updated successfully!`)
-        var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
-        res.redirect(landing)
-      })
+
+        })
+      } else {
+        post.save().then((saved)=> {
+          req.flash('success_msg', `Post ${saved.title} was updated successfully!`)
+          var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
+          res.redirect(landing)
+        })
       }
     }
   })
@@ -271,8 +260,7 @@ router.delete('/:id', (req, res)=> {
         }
         post.deleteOne()
         req.flash('success_msg', `Post ${post.title} was deleted successfully!`)
-        var landing = (req.user.isAdmin ? '/admin/posts/': '/admin/posts/myposts/')
-        res.redirect(landing)
+        res.redirect('back')
       })
   })
 })
