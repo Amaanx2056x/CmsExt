@@ -2,6 +2,7 @@
 <html lang="en">
 {{>links}}
 
+
 <body>
   <div id="wrap">
     {{>header}}
@@ -37,13 +38,13 @@
       <div id="commentBox" class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
-          <form action='/admin/comments/create' method='post' autocomplete="off">
-            <div class="form-group">
-              <textarea name='body' autocomplete="off" class="form-control" rows="3"></textarea>
-              <input type="hidden" name='id' value="{{post.id}}">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+
+          <div class="form-group">
+            <textarea name='body' id="comment" autocomplete="off" class="form-control" rows="3"></textarea>
+            <input type="hidden" name='id' id="postId" value="{{post.id}}">
+          </div>
+          <button id="commentIt" class="btn btn-primary">Submit</button>
+
         </div>
       </div>
       {{else}}
@@ -52,7 +53,7 @@
       {{else}} <h3 id="headings">You need to <a href="/login">Log in </a>to Comment</h3><hr>
       {{/if}}
       {{#if post.comments}}
-      <div id="commentBox" class="card mb-3" style="overflow: auto;height: 300px;">
+      <div id="commentBox" name="commentList" class="card mb-3" style="overflow: auto;height: 300px;">
         {{#each post.comments}}
         <div class="media m-3">
           <img class="d-flex mr-3 rounded-circle" src="/src/profile.jpg" alt="" height="40" width="40">
@@ -67,6 +68,32 @@
       {{/if}}
     </div>
   </div>
+  <script>
+    $(document).ready(function () {
+      $("#commentIt").on('click', function () {
+        $.post('/admin/comments/create',
+          {
+            body: $("#comment").val().toString(),
+            id: $("#postId").attr("value").toString()
+          }).done(function (data) {
+            $("#comment").val('');
+            $("[name='commentList']").append(`<div class="media m-3">
+              <img class="d-flex mr-3 rounded-circle" src="/src/profile.jpg" alt="" height="40" width="40">
+              <div class="media-body">
+              <h5 class="mt-0">${data.user}</h5>
+              ${data.savedcomm.body}
+              </div>
+              </div>`)
+            $("[name='commentList']").animate({
+              scrollTop: $("[name='commentList']").prop("scrollHeight")}, 1000);
+          }).fail(function () {
+            alert('Unknown Server Error!')
+          })
+
+
+      })
+    })
+  </script>
   {{>footer}}
 </body>
 </html>

@@ -49,7 +49,9 @@ router.post('/create', (req, res)=> {
       post.comments.push(newComment)
       post.save().then((savedpost)=> {
         newComment.save().then((savedcomm)=> {
-          res.redirect(`/post/${post.id}`)
+          res.send({
+            savedcomm, user: req.user.username
+          })
         })
       })
     }
