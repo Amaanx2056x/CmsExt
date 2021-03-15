@@ -1,17 +1,4 @@
 const nodemailer = require('nodemailer')
-const {
-  google
-} = require("googleapis");
-const OAuth2 = google.auth.OAuth2;
-const oauth2Client = new OAuth2(
-  "Y819531127074-091c14shlrjq3l36kpk9mm5504fpjrcj.apps.googleusercontent.com", // ClientID
-  "egNi3G328BlBn2hq0-Mf8LTz", // Client Secret
-  "https://developers.google.com/oauthplayground" // Redirect URL
-);
-oauth2Client.setCredentials({
-  refresh_token: "1//04wK211BiDPw_CgYIARAAGAQSNwF-L9IrGB0Fpsv4vs_aXZWMFJh4ryZZRCVX0UH-ZcHPnghlpZX5K53RGXsHfjrfYYYsh1bUdQ0"
-});
-const accessToken = oauth2Client.getAccessToken()
 module.exports = {
 
   welcomeMail: function(username, email, otp) {
@@ -41,12 +28,8 @@ module.exports = {
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        type: "OAuth2",
-        user: "teamcms01r@gmail.com",
-        clientId: "Y819531127074-091c14shlrjq3l36kpk9mm5504fpjrcj.apps.googleusercontent.com",
-        clientSecret: "egNi3G328BlBn2hq0-Mf8LTz",
-        refreshToken: "1//04wK211BiDPw_CgYIARAAGAQSNwF-L9IrGB0Fpsv4vs_aXZWMFJh4ryZZRCVX0UH-ZcHPnghlpZX5K53RGXsHfjrfYYYsh1bUdQ0",
-        accessToken: accessToken
+        user: 'teamcms01r@gmail.com',
+        pass: 'TeamCMS01r'
       }
     });
     var mailOptions = {
