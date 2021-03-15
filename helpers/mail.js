@@ -4,7 +4,7 @@ module.exports = {
   welcomeMail: function(username, email, otp) {
     var welcomeBody =
 
-    `<div style=" border-radius: 5px;color: white; background-color: black;">
+    `<div style=" border-radius: 5px;color: white; background-color: #7b2cbf;">
     <center><h1>WELCOME TO TeamCMS</h1>
     <p>
     Hi ${username}, <br>We have received a request from ${email} for your CMS account. We are glad to have you here.
@@ -29,7 +29,7 @@ module.exports = {
       service: 'gmail',
       auth: {
         user: 'teamcms01r@gmail.com',
-        pass: 'TeamCMS01r'
+        pass: '@TeamCms01r#'
       }
     });
     var mailOptions = {
@@ -53,7 +53,7 @@ module.exports = {
   },
   forgetMail: function (username, email, token) {
     var forgetBody =
-    `<div style=" border-radius: 5px;color: white; background-color: black;">
+    `<div style=" border-radius: 5px;color: white; background-color: #7b2cbf;">
     <center><h1>PASSWORD RESET REQUEST</h1>
     <p>
     Hi ${username}, We have received Password reset request from ${email} for your CMS account. If this wasn't you, check your Account for any suspicious activity and ignore the message.
@@ -76,7 +76,7 @@ module.exports = {
       service: 'gmail',
       auth: {
         user: 'teamcms01r@gmail.com',
-        pass: 'TeamCMS01r'
+        pass: '@TeamCms01r#'
       }
     });
     var mailOptions = {
@@ -102,7 +102,7 @@ module.exports = {
   deleteMail: function (username,
     email) {
     var deleteBody =
-    `<div style=" border-radius: 5px;color: white; background-color: black;">
+    `<div style=" border-radius: 5px;color: white; background-color: #7b2cbf;">
     <center><h1>ACCOUNT DELETED</h1><p>
     Hi ${username}, we're sorry to see you go. This mail is sent to you to inform you that your account has been deleted.
     </p>
@@ -116,7 +116,7 @@ module.exports = {
       service: 'gmail',
       auth: {
         user: 'teamcms01r@gmail.com',
-        pass: 'TeamCMS01r'
+        pass: '@TeamCms01r#'
       }
     });
 
