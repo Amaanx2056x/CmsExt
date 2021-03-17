@@ -18,12 +18,10 @@ router.get('/', (req, res)=> {
   Post.find({
     status: 'public'
   })
-  .sort({
-    date: -1
-  })
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate('user').then((post)=> {
+    console.log(post)
     if (post.length == 0) {
       res.render('layouts/home', {
         message: "No Post have been made yet.", pageTitle: "HOME"
@@ -33,6 +31,7 @@ router.get('/', (req, res)=> {
         Category.find({
           approved: true
         }).then((category)=> {
+
           res.render('layouts/home', {
             post,
             category,
@@ -280,9 +279,6 @@ router.post('/search', (req, res)=> {
       $regex: req.body.searchText,
       $options: 'i'
     }})
-  .sort({
-    date: -1
-  })
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate ('user')
@@ -316,9 +312,6 @@ router.get('/categories/:id', (req, res)=> {
   const page = req.query.page || 1;
   Post.find({
     category: req.params.id
-  })
-  .sort({
-    date: -1
   })
   .populate('category')
   .skip((perPage * page)-perPage)
