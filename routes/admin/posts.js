@@ -210,7 +210,8 @@ router.put('/update/:id', (req,
 
 
       if (!isEmpty(req.files)) {
-        cloudinary.uploader.destroy(post.publicid.toString()).then(result=> {})
+        if (post.file) {
+          cloudinary.uploader.destroy(post.publicid.toString()).then(result=> {})}
 
         let file = req.files.file
         filename = Date.now()+"-"+file.name
