@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+require('dotenv').config()
 module.exports = {
 
   welcomeMail: function(username, email, otp) {
@@ -26,28 +27,34 @@ module.exports = {
 
 
     var transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: 'teamcms01r@gmail.com',
-        pass: '@TeamCms01r#'
+        type: 'OAuth2',
+        user: process.env.MAIL_USER,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: process.env.ACCESS_TOKEN
       }
     });
     var mailOptions = {
 
-      from: 'teamcms01r@gmail.com',
+      from: process.env.MAIL_USER,
       to: email.toString(),
       subject: 'VERIFY YOUR ACCOUNT',
       html: welcomeBody
     }
     transporter.sendMail(mailOptions, function(error, info) {
       if (error) {
-        req.flash('error_msg', 'UNABLE TO SEND REQUEST DUE TO SOME UNKNOWN ERROR, PLEASE TRY AGAIN LATER.')
         res.redirect('/')
+        console.error(error)
       } else {
-
         req.flash('success_msg', `An e-mail with otp has been sent to ${email}`)
         res.redirect('/verify')
       }
+      transporter.close();
     });
 
   },
@@ -73,15 +80,21 @@ module.exports = {
     </p>
     </div>`
     var transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: 'teamcms01r@gmail.com',
-        pass: '@TeamCms01r#'
+        type: 'OAuth2',
+        user: process.env.MAIL_USER,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: process.env.ACCESS_TOKEN
       }
     });
     var mailOptions = {
 
-      from: 'teamcms01r@gmail.com',
+      from: process.env.MAIL_USER,
       to: email.toString(),
       subject: 'RESET YOUR PASSWORD ',
       html: forgetBody
@@ -90,12 +103,13 @@ module.exports = {
     transporter.sendMail(mailOptions,
       function(error, info) {
         if (error) {
-          req.flash('error_msg', 'UNABLE TO SEND REQUEST DUE TO SOME UNKNOWN ERROR, PLEASE TRY AGAIN LATER.')
-          res.redirect('/forgot')
+          res.redirect('/')
+          console.error(error)
         } else {
           req.flash('success_msg', `An e-mail with Password Reset instructions had been sent to ${user.email}`)
           res.redirect('/forgot')
         }
+        transporter.close();
       });
 
   },
@@ -113,16 +127,22 @@ module.exports = {
     </div>`
 
     var transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: 'teamcms01r@gmail.com',
-        pass: '@TeamCms01r#'
+        type: 'OAuth2',
+        user: process.env.MAIL_USER,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: process.env.ACCESS_TOKEN
       }
     });
 
     var mailOptions = {
 
-      from: 'teamcms01r@gmail.com',
+      from: process.env.MAIL_USER,
       to: email.toString(),
       subject: 'ACCOUNT DELETED',
       html: deleteBody
@@ -130,13 +150,14 @@ module.exports = {
     transporter.sendMail(mailOptions,
       function(error, info) {
         if (error) {
-          req.flash('error_msg', 'UNABLE TO SEND REQUEST DUE TO SOME UNKNOWN ERROR, PLEASE TRY AGAIN LATER.')
           res.redirect('/')
+          console.error(error)
         } else {
           req.flash('success_msg',
             `Account was deleted successfully!`)
           res.redirect('/login')
         }
+        transporter.close();
       });
 
   }

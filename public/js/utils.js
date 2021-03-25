@@ -1,8 +1,6 @@
-
-document.querySelector("#noScript").setAttribute("display", "none")
-if (window.history.replaceState) {
-  window.history.replaceState(null, null, window.location.href);
-}
+$(document).ready(function() {
+  $(".no-script").hide()
+})
 
 function restrict() {
   var token = document.querySelector('[limited]')
@@ -37,22 +35,22 @@ function deleteUnlock() {
   }
 }
 
-function deleteCategory(id){
- document.querySelector("#modalForm").action=`/admin/categories/${id}?_method=DELETE`;
+function deleteCategory(id) {
+  document.querySelector("#modalForm").action = `/admin/categories/${id}?_method=DELETE`;
 }
 
-function deleteComment(id){
- document.querySelector("#modalForm").action=`/admin/comments/${id}?_method=DELETE`;
+function deleteComment(id) {
+  document.querySelector("#modalForm").action = `/admin/comments/${id}?_method=DELETE`;
 }
-function deletePost(id){
- document.querySelector("#modalForm").action=`/admin/posts/${id}?_method=DELETE`;
+function deletePost(id) {
+  document.querySelector("#modalForm").action = `/admin/posts/${id}?_method=DELETE`;
 }
-function deleteUser(id){
-   document.querySelector("#modalForm").action=`/admin/profile/${id}?_method=DELETE`;
+function deleteUser(id) {
+  document.querySelector("#modalForm").action = `/admin/profile/${id}?_method=DELETE`;
 }
-function demoteUser(id){
-   document.querySelector("#modalFormUser").action=`/admin/demote/${id}?_method=PUT`;
+function demoteUser(id) {
+  document.querySelector("#modalFormUser").action = `/admin/demote/${id}?_method=PUT`;
 }
-function promoteUser(id){
-   document.querySelector("#modalFormUser").action=`/admin/promote/${id}?_method=PUT`;
+function promoteUser(id) {
+  document.querySelector("#modalFormUser").action = `/admin/promote/${id}?_method=PUT`;
 }

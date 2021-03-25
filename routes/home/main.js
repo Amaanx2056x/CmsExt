@@ -21,7 +21,7 @@ router.get('/', (req, res)=> {
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate('user').then((post)=> {
-    console.log(post)
+
     if (post.length == 0) {
       res.render('layouts/home', {
         message: "No Post have been made yet.", pageTitle: "HOME"

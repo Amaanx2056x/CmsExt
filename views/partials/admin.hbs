@@ -2,7 +2,7 @@
   .navbar {
     background-color: #5a189a;
   }
-  .bttn, .btn2{
+  .bttn, .btn2 {
     font-weight: bold;
     background-color: #7b2cbf;
     color: #fff;
@@ -34,32 +34,29 @@
           <a class="bttn btn btn-default m-1" href='/admin/users/'>Users</a>
           < <a class="bttn btn btn-default m-1" data-toggle="modal" data-target="#exampleModalCenter">Logout</a>
 
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to Log out?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="/logout">
+            <button type="submit" class="btn2 btn btn-default">Log Out</button>
+          </form>
         </div>
       </div>
     </div>
-  </nav>
-</header>
-<noscript><h3 style="color: white;"> You must have JavaScript enabled in order to use this order form. Please 
-      enable JavaScript and then reload this page in order to continue. </h3> 
-</noscript>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to Log out?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <form action="/logout">
-        <button type="submit" class="btn2 btn btn-default">Log Out</button>
-        </form>
-      </div>
-    </div>
   </div>
-</div>
