@@ -17,11 +17,12 @@ router.get('/', (req, res)=> {
   const page = req.query.page || 1;
   Post.find({
     status: 'public'
+  }).sort({
+    _id: -1
   })
   .skip((perPage * page)-perPage)
   .limit(perPage)
   .populate('user').then((post)=> {
-
     if (post.length == 0) {
       res.render('layouts/home', {
         message: "No Post have been made yet.", pageTitle: "HOME"
@@ -31,7 +32,6 @@ router.get('/', (req, res)=> {
         Category.find({
           approved: true
         }).then((category)=> {
-
           res.render('layouts/home', {
             post,
             category,
