@@ -183,7 +183,7 @@ router.get('/post/:id', (req, res)=> {
       approved: true
     }).then((categories)=> {
       res.render('layouts/post', {
-        post, categories, first: (post.comments.length > 0) ? true: false
+        post, categories, hasComments: (post.comments.length > 0) ? true: false
       })
     })
   })

@@ -5,11 +5,13 @@ html, body {
   width: 100%;
 }
 body {
-  background-image: url('../src/bg2.jpg');
+  background-image: linear-gradient(180deg,#9900cc, #4d0066);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
+
+
 #wrap {
   width: 100%;
   min-height: 100vh;
@@ -32,7 +34,7 @@ body {
   color: black;
   font-weight: bold;
 }
-.nonmuted{
+.nonmuted {
   color: #010211;
   font-style: italic;
   font-weight: bold;
